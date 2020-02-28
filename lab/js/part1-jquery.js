@@ -170,6 +170,65 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // This is a popular pattern that you'll run into in programs that run jQuery. It says not to run
 // the function passed to `ready` until the HTML document is fully loaded and all scripts have
 // been interpreted. It is, therefore, an example of asynchronous behavior.
-$(document).ready(function() {
-  // Do your stuff here
+$('part1-jquery.html').ready(function() {
+  //task 1
+  $('#main-heading').text('find the spot');
+  $('#text-label1').text('longtitude');
+  $("#text-label2").text("latitude");
+  $("#text-label3").text("street");
+  $("#number-label").text("zipcode");
+  $("#checkbox-label1").text("proximity");
+  $("#checkbox-label2").text("market");
+  $("#color-label").text("colors");
+  $('button').text('show');
+
+  //task 2
+  $("#text-input1").val(-75);
+  $("#text-input2").val(39);
+  $("#text-input3").val('chestnut');
+  $("#numeric-input").val(5);
+  $("#cbox-input1").prop("checked", true);
+  $("#cbox-input2").prop("checked", true);
+  $("#color-input").val("#ff4500");
+
+  //task 3
+  var long = $('text-input1').val();
+  var lat = $("#text-input2").val();
+  var street = $("#text-input3").val();
+  var zipCode = $("#numeric-input").val();
+  var prox = $("#cbox-input1").prop();
+  var market = $("#cbox-input2").prop();
+
+  var Label =  function(long, lat, street, zipCode, prox, market){
+    return {
+      "long": long,
+      "lat": lat,
+      "street": chestnut,
+      "zipCode": 19104,
+      "prox": close,
+      "market": acme,
+    };
+  };
+
+  Label("chestnut");
+  /*
+  var Label1 = {
+    [$('#text-label1').text()] = [$('#text-input1').val()]
+  }
+
+
+  */
+  //task 4
+
+  //task 5
+
+  //task 6
+
+  //task 7
+
+  //task 8
+
+  //task 9
+
+
 });
