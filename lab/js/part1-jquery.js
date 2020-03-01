@@ -171,5 +171,61 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // the function passed to `ready` until the HTML document is fully loaded and all scripts have
 // been interpreted. It is, therefore, an example of asynchronous behavior.
 $(document).ready(function() {
+  $("#text-label1").text('School name');
+  $("#text-label2").text('School district');
+  $("#text-label3").text('School address');
+  $("#number-label").text('Number of students');
+  $("#checkbox-label1").text('Has special education');
+  $("#checkbox-label2").text('Has bilingual instruction');
+  $("#color-label").text('School color');
+  $("#text-input1").val('Jubilee School');
+  $("#text-input2").val('School District of Philadelphia');
+  $("#text-input3").val('4211 Chester Avenue');
+  $("#text-input1").val('Jubilee School');
+  $("#numeric-input").val('300');
+  $("#cbox-input1").prop('checked', true);
+  $("#cbox-input2").prop('checked', false);
+  $("#color-input").val('#0000ff');
+  $('#text-input1').prop('disabled', false);
+  $('#text-input2').prop('disabled', false);
+  $('#text-input3').prop('disabled', false);
+  $('#numeric-input').prop('disabled', false);
+  $('#cbox-input1').prop('disabled', false);
+  $('#cbox-input2').prop('disabled', false);
+  $('#color-input').prop('disabled', false);
   // Do your stuff here
 });
+
+
+
+var makeSchool = function(name, district, address, numStudents, hasSpecial, hasBilingual, color) {
+  var school = {
+    "name": name,
+    "district": district,
+    "address": address,
+    "numStudents": numStudents,
+    "hasSpecial": hasSpecial,
+    "hasBilingual": hasBilingual,
+    "color": color,
+  };
+  return school;
+};
+
+$('button').click(function(e) {
+  makeSchool.name = $('#text-input1').val();
+  console.log("name", makeSchool.name);
+  makeSchool.district = $('#text-input2').val();
+  console.log("district", makeSchool.district);
+
+  makeSchool.address = $('#text-input3').val();
+  console.log("address", makeSchool.address);
+
+  makeSchool.numStudents = $('#numeric-input').val();
+  console.log("numStudents", makeSchool.numStudents);
+  makeSchool.hasSpecial = $('#cbox-input1')[0].checked;
+  console.log("hasSpecial", makeSchool.hasSpecial);
+  makeSchool.hasBilingual = $('#cbox-input2')[0].checked;
+  console.log("hasBilingual", makeSchool.hasBilingual);
+  makeSchool.color = $('#color-input').val();
+  console.log("color", makeSchool.color);
+})
