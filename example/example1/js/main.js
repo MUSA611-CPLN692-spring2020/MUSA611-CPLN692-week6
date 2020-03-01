@@ -10,11 +10,11 @@ getAndParseData();
 $('button#my-button').click(function(e) {
   appState.numericField1 = $('#num1').val();
   console.log("numericField1", appState.numericField1);
-
+  debugger; //allows you to pause the script
   appState.numericField2 = $('#num2').val();
   console.log("numericField2", appState.numericField2);
 
-  appState.booleanField = $('#boolean')[0].checked;
+  appState.booleanField = $('#boolean')[0].checked; //# refers to id
   console.log("booleanField", appState.booleanField);
 
   appState.stringField = $('#string').val();

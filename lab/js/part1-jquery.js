@@ -170,6 +170,83 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // This is a popular pattern that you'll run into in programs that run jQuery. It says not to run
 // the function passed to `ready` until the HTML document is fully loaded and all scripts have
 // been interpreted. It is, therefore, an example of asynchronous behavior.
-$(document).ready(function() {
-  // Do your stuff here
+$('part1-jquery.html').ready(function() {
+
+  //Task 4
+  $('#text-input1').prop('disabled', false);
+  $('#text-input2').prop('disabled', false);
+  $('#text-input3').prop('disabled', false);
+  $('#numeric-input').prop('disabled', false);
+  $('#cbox-input1').prop('disabled', false);
+  $('#cbox-input2').prop('disabled', false);
+  $('#color-input').prop('disabled', false);
+
+  //Task 1
+  $('#main-heading').text('Find your restaurant');
+
+  $('#text-label1').text('Longitude');
+  $('#text-label2').text('Latitude');
+  $('#text-label3').text('Name');
+  $('#number-label').text('Number of tables');
+  $('#checkbox-label1').text('Vegetarian');
+  $('#checkbox-label2').text('Delivery');
+  $('#color-label').text('Color');
+  $('button').text('Show');
+
+  //Task 2
+  $('#text-input1').val(-75.169819);
+  $('#text-input2').val(39.951786);
+  $('#text-input3').val('Just Salad');
+  $('#numeric-input').val(8);
+  $('#cbox-input1').prop('checked', true);
+  $('#cbox-input2').prop('checked', true);
+  $('#color-input').val('#15284b');
+
+  //Task 3
+  var LNG = $('#text-input1').val();
+  var LAT = $('#text-input2').val();
+  var name = $('#text-input3').val();
+  var num = $('#numeric-input').val();
+  var veg = $('#cbox-input1').prop('checked');
+  var deli = $('#cbox-input2').prop('checked');
+  var color = $('#color-input').val();
+
+//Task 3
+  var newobject = function (LNG, LAT, name, num, veg, deli, color){
+    return {
+    'LNG': LNG,
+    'LAT': LAT,
+    'name': name,
+    'num': num,
+    'veg': veg,
+    'deli': deli,
+    'color': color
+  };
+  };
+
+  //Task 5
+  $('button').click(function() {
+    var LNG = $('#text-input1').val();
+    var LAT = $('#text-input2').val();
+    var name = $('#text-input3').val();
+    var num = $('#numeric-input').val();
+    var veg = $('#cbox-input1').prop('checked');
+    var deli = $('#cbox-input2').prop('checked');
+    var color = $('#color-input').val();
+
+    var userinput = newobject(LNG, LAT, name, num, veg, deli, color);
+    console.log(userinput.LNG, userinput.LAT, userinput.name, userinput.num, userinput.color);
+
+    var pathOpts = {'radius': userinput.num,
+                    'fillColor': color};
+
+    L.circleMarker([userinput.LAT, userinput.LNG], pathOpts)
+    .addTo(map)
+    .bindPopup(userinput.name);
+
+});
+
+
+console.log(LAT);
+
 });
