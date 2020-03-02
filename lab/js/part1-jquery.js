@@ -172,4 +172,110 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // been interpreted. It is, therefore, an example of asynchronous behavior.
 $(document).ready(function() {
   // Do your stuff here
+
+  //Task 3 get the data from form
+  function getFormData(){
+    obj = {};
+    obj[$("#text-label1").text()] = $("#text-input1").val();
+    obj[$("#text-label2").text()] = $("#text-input2").val();
+    obj[$("#text-label3").text()] = $("#text-input3").val();
+    obj[$("#number-label").text()] = $("#numeric-input").val();
+    obj[$("#checkbox-label1").text()] = $("#cbox-input1")[0].checked;
+    obj[$("#checkbox-label2").text()] = $("#cbox-input2")[0].checked;
+    obj[$("#color-label").text()] = $("#color-input").val();
+    return obj;
+  }
+
+  //Task 7 set default
+  function defaultObj(obj){
+    for(var i = 0; i< Object.keys(obj).length; i++){
+      if(Object.values(obj)[i] === ""){
+        obj[Object.keys(obj)[i]] = "default";
+      }
+    }
+  }
+
+  //Task 9
+  var inputByObj = function(obj){
+    $("#text-label1").text(Object.keys(obj)[0]);
+    $("#text-label2").text(Object.keys(obj)[1]);
+    $("#text-label3").text(Object.keys(obj)[2]);
+    $("#number-label").text(Object.keys(obj)[3]);
+    $("#checkbox-label1").text(Object.keys(obj)[4]);
+    $("#checkbox-label2").text(Object.keys(obj)[5]);
+    $("#color-label").text(Object.keys(obj)[6]);
+
+    $("#text-input1").val(Object.values(obj)[0]);
+    $("#text-input2").val(Object.values(obj)[1]);
+    $("#text-input3").val(Object.values(obj)[2]);
+    $("#numeric-input").val(Object.values(obj)[3]);
+    $("#cbox-input1").prop('checked',Object.values(obj)[4]);
+    $("#cbox-input2").prop('checked',Object.values(obj)[5]);
+    $("#color-input").val(Object.values(obj)[6]);
+  }
+
+
+  //Task 1 set text
+  $("#text-label1").text("lat,long");
+  $("#text-label2").text("name");
+  $("#text-label3").text("address");
+  $("#number-label").text("age");
+  $("#checkbox-label1").text("isDoctor");
+  $("#checkbox-label2").text("isMale");
+  $("#color-label").text("hairColor");
+
+  //Task 2 set value
+  $("#text-input1").val("39.9522,-75.1639");
+  $("#text-input2").val("Bob");
+  $("#text-input3").val("Paraside");
+  $("#numeric-input").val(110);
+  $("#cbox-input1").prop('checked',true);
+  $("#cbox-input2").prop('checked',false);
+  $("#color-input").val('#ff0000');
+
+
+  //Task 4 set disable false
+  $("#text-input1").prop('disabled', false);
+  $("#text-input2").prop('disabled', false);
+  $("#text-input3").prop('disabled', false);
+  $("#numeric-input").prop('disabled', false);
+  $("#cbox-input1").prop('disabled', false);
+  $("#cbox-input2").prop('disabled', false);
+
+  result = getFormData();
+
+  //Task 5 set click function
+  $("button").click(function() {
+    result = getFormData();
+    defaultObj(result);
+    console.log(result);
+    
+    //Task 6 popup the mark
+    // list = result["lat,long"].split(",");
+    // L.circleMarker([list[0],list[1]], {color: result[$("#color-label").text()]}).addTo(map)
+    // .bindPopup(
+    // `<b>${Object.keys(result)[1]}:</b>  ${Object.values(result)[1]} 
+    // <br><b>${Object.keys(result)[2]}:</b>  ${Object.values(result)[2]}
+    // <br><b>${Object.keys(result)[3]}:</b>  ${Object.values(result)[3]}
+    // <br><b>${Object.keys(result)[4]}:</b>  ${Object.values(result)[4]}
+    // <br><b>${Object.keys(result)[5]}:</b>  ${Object.values(result)[5]}`, {
+    // closeButton: true,
+    // offset: L.point(0, -20)
+    // });
+
+    //Task 8
+    list = result["lat,long"].split(",");
+    var myIcon = L.divIcon();
+    L.marker([list[0],list[1]], {color: result[$("#color-label").text()]}, {icon: myIcon}).addTo(map)
+    .bindPopup(
+    `<b>${Object.keys(result)[1]}:</b>  ${Object.values(result)[1]} 
+    <br><b>${Object.keys(result)[2]}:</b>  ${Object.values(result)[2]}
+    <br><b>${Object.keys(result)[3]}:</b>  ${Object.values(result)[3]}
+    <br><b>${Object.keys(result)[4]}:</b>  ${Object.values(result)[4]}
+    <br><b>${Object.keys(result)[5]}:</b>  ${Object.values(result)[5]}`, {
+    closeButton: true,
+    offset: L.point(0, -20)
+    });
+  });
+  
 });
