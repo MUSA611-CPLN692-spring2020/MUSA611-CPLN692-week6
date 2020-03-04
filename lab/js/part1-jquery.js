@@ -172,6 +172,7 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // been interpreted. It is, therefore, an example of asynchronous behavior.
 $(document).ready(function() {
   // Do your stuff here
+
    $("#text-label1").text('Name');
    $("#text-label2").text('Address');
    $("#text-label3").text('Race');
@@ -193,18 +194,6 @@ $(document).ready(function() {
    $("#lat").val(39.954618);
    $("#long").val(-75.195397);
 
-   responses = {
-     'Name': $("#text-input1").val(),
-     'Address': $("#text-input2").val(),
-     'Race': $("#text-input3").val(),
-     'Age': $("#numeric-input").val(),
-     'Employed': $("#cbox-input1").prop('checked'),
-     "Bachelor's degree or higher": $("#cbox-input2").prop('checked'),
-     'Favorite color': $("#color-input").val(),
-     'Lat': $("#lat").val(),
-     'Long': $("#long").val(),
-     'Description': $("#description").val()
-   };
    $("#text-input1").prop('disabled', false);
    $("#text-input2").prop('disabled', false);
    $("#text-input3").prop('disabled', false);
@@ -217,14 +206,57 @@ $(document).ready(function() {
    $("#description").prop('disabled', false);
 
    $( "Button" ).click(function() {
-     console.log(responses);
-     var circle = L.circleMarker([responses.Lat, responses.Long], {
-       color: responses['Favorite color'],
-       fillColor: responses['Favorite color'],
-       fillOpacity: 0.5,
-       radius: 50
-     }).addTo(map);
-     circle.bindPopup(responses.Description);
-  });
+     responses = {
+       'Name': $("#text-input1").val(),
+       'Address': $("#text-input2").val(),
+       'Race': $("#text-input3").val(),
+       'Age': $("#numeric-input").val(),
+       'Employed': $("#cbox-input1").prop('checked'),
+       "Bachelor's degree or higher": $("#cbox-input2").prop('checked'),
+       'Favorite color': $("#color-input").val(),
+       'Lat': $("#lat").val(),
+       'Long': $("#long").val(),
+       'Description': $("#description").val()
+     };
 
+     console.log(responses);
+     if (responses.Lat == '') {
+       responses.Lat = 39.954618;
+     }
+     if (responses.Long == '') {
+       responses.Long = -75.195397;
+     }
+     if (responses['Favorite color'] == '') {
+       responses['Favorite color'] = '#2E86C1';
+     }
+    if (responses.Description == '') {
+       responses.Description = 'My Home';
+     }
+
+    var myCustomColour = responses['Favorite color'];
+
+    var markerHtmlStyles = `
+       background-color: ${myCustomColour};
+       width: 3rem;
+       height: 3rem;
+       display: block;
+       left: -1.5rem;
+       top: -1.5rem;
+       position: relative;
+       border-radius: 3rem 3rem 0;
+       transform: rotate(45deg);
+       border: 1px solid #FFFFFF`
+
+       const icon = L.divIcon({
+         className: "my-custom-pin",
+         iconAnchor: [0, 24],
+         labelAnchor: [-6, 0],
+         popupAnchor: [0, -36],
+         html: `<span style="${markerHtmlStyles}" />`
+       })
+
+    marker = L.marker([responses.Lat, responses.Long], {icon: icon}).addTo(map);
+    marker.bindPopup(responses.Description);
+
+  });
 });
