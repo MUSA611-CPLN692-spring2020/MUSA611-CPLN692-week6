@@ -172,6 +172,7 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // been interpreted. It is, therefore, an example of asynchronous behavior.
 $(document).ready(function() {
   // Do your stuff here
+  $('#main-heading').text('Restaurant Tracker');
   $('#text-label1').text('Restaurant Name');
   $('#text-input1').prop("disabled", false);
   $('#text-label2').text('Speciality');
