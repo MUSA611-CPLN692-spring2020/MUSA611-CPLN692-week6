@@ -127,7 +127,7 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 
     Enable *all* fields on this form.
 
-  Task 5: Add a button trigger to log this form's object to console
+  Task 5: Add a  trigger to log this form's object to console
     We now can enter data through the HTML and create an object to represent that data. Add a button
     click event to the button at the bottom of your form. This means that we want to use jQuery to
     bind your input-reading function (what you did in task 3) to the button's 'click' event.
@@ -172,4 +172,91 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // been interpreted. It is, therefore, an example of asynchronous behavior.
 $(document).ready(function() {
   // Do your stuff here
+
+   $("#text-label1").text('Name');
+   $("#text-label2").text('Address');
+   $("#text-label3").text('Race');
+   $("#number-label").text('Age');
+   $("#checkbox-label1").text('Employed');
+   $("#checkbox-label2").text("Bachelor's degree or higher");
+   $("#color-label").text("Favorite color");
+   $("#text-input1").val('Ada');
+   $("#text-input2").val('3600 Chestnut St');
+   $("#text-input3").val('Asian');
+   $("#numeric-input").val(22);
+   $("#cbox-input1").prop( "checked", true );
+   $("#cbox-input2").prop( "checked", true );
+   $("#color-input").val('#2E86C1');
+
+   $("#text-input2").after('<br>', '<br>', '<label id="lat-label" for="lat">Latitude</label>', '<input type="number" id="lat" >', '<br>', '<br>', '<label id="long-label" for="long">Longitude</label>', '<input type="number" id="long" >', '<br>', '<br>', '<label id="description-label" for="description">Description</label>', '<input id="description" class="input-text" type="text" placeholder="text here" value="some address" disabled>','<br>');
+
+   $("#description").val('My home');
+   $("#lat").val(39.954618);
+   $("#long").val(-75.195397);
+
+   $("#text-input1").prop('disabled', false);
+   $("#text-input2").prop('disabled', false);
+   $("#text-input3").prop('disabled', false);
+   $("#numeric-input").prop('disabled', false);
+   $("#cbox-input1").prop('disabled', false);
+   $("#cbox-input2").prop('disabled', false);
+   $("#color-input").prop('disabled', false);
+   $("#lat").prop('disabled', false);
+   $("#long").prop('disabled', false);
+   $("#description").prop('disabled', false);
+
+   $( "Button" ).click(function() {
+     responses = {
+       'Name': $("#text-input1").val(),
+       'Address': $("#text-input2").val(),
+       'Race': $("#text-input3").val(),
+       'Age': $("#numeric-input").val(),
+       'Employed': $("#cbox-input1").prop('checked'),
+       "Bachelor's degree or higher": $("#cbox-input2").prop('checked'),
+       'Favorite color': $("#color-input").val(),
+       'Lat': $("#lat").val(),
+       'Long': $("#long").val(),
+       'Description': $("#description").val()
+     };
+
+     console.log(responses);
+     if (responses.Lat == '') {
+       responses.Lat = 39.954618;
+     }
+     if (responses.Long == '') {
+       responses.Long = -75.195397;
+     }
+     if (responses['Favorite color'] == '') {
+       responses['Favorite color'] = '#2E86C1';
+     }
+    if (responses.Description == '') {
+       responses.Description = 'My Home';
+     }
+
+    var myCustomColour = responses['Favorite color'];
+
+    var markerHtmlStyles = `
+       background-color: ${myCustomColour};
+       width: 3rem;
+       height: 3rem;
+       display: block;
+       left: -1.5rem;
+       top: -1.5rem;
+       position: relative;
+       border-radius: 3rem 3rem 0;
+       transform: rotate(45deg);
+       border: 1px solid #FFFFFF`
+
+       const icon = L.divIcon({
+         className: "my-custom-pin",
+         iconAnchor: [0, 24],
+         labelAnchor: [-6, 0],
+         popupAnchor: [0, -36],
+         html: `<span style="${markerHtmlStyles}" />`
+       })
+
+    marker = L.marker([responses.Lat, responses.Long], {icon: icon}).addTo(map);
+    marker.bindPopup(responses.Description);
+
+  });
 });
