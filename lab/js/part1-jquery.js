@@ -13,8 +13,46 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
   ext: 'png'
 }).addTo(map);
 
+
 /* =====================
-  Lab - jQuery
+  Call getAndParseData to grab our dataset through a jQuery.ajax call ($.ajax)
+===================== */
+
+getAndParseData();
+
+/* =====================
+  The code here is triggered when you click on the button with ID #my-button
+  ALL functions called here will be called EVERY time a click event fires
+===================== */
+$('button#my-button').click(function(e) {
+  appState.stringField1 = $('#blockid').val();
+  console.log("stringField1", appState.stringField1);
+
+  appState.stringField2 = $('#streetid').val();
+  console.log("stringField2", appState.stringField2);
+
+  appState.booleanField = $('#cbox-input1')[0].checked;
+  console.log("booleanField", appState.booleanField);
+
+  appState.numericField = $('#string').val();
+  console.log("numericField", appState.numericField);
+
+
+  /* =====================
+    Call our resetMap function to remove markers from the map and clear out the array of marker
+    objects
+  ===================== */
+  resetMap();
+
+  /* =====================
+    Call our plotData function. It should plot all the markers that meet our criteria
+  ===================== */
+  plotData();
+});
+
+
+/* =====================
+  Lab - jQuery  
 
   In this course, we've set our focus on HTML, CSS, & Javascript as they are useful in the construction
   of mapping applications. One thing that isn't yet clear is how to handle user input. This is difficult

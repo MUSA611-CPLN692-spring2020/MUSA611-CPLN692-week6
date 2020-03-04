@@ -8,11 +8,30 @@
   </head>
   <body>
     <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- =====================
-      Add elements in this space
-      ====================== -->
+    <div class="sidebar" style="position: absolute; left: 0px; width: 25%; top: 0; bottom: 0;
+    background-color: #e6e6e6; color: #343e47;">
+      <h1 id="main-heading">Customize Data Source</h1>
+      <label id="url-label" >Data Source</label>
+      <input id="url" class="input-text" type="text" placeholder="Input Data URL" value = "" enabled>
+      <br>
+      <br>
+      <label id="lat-label" >Latitude &nbsp &nbsp &nbsp</label>
+      <input id="lat" class="input-text" type="text" placeholder="Input latitude key" value = "" enabled>
+      <br>
+      <br>
+      <label id="lon-label" for="text-input3">Longitude &nbsp &nbsp</label>
+      <input id="lon" class="input-text" type="text" placeholder="Input longitude key" value = "" enabled>
+      <br>
+      <br>
+      <label id="value-label" for="text-input3">Value Field &nbsp &nbsp</label>
+      <input id="value" class="input-text" type="text" placeholder="Input value field" value = "" enabled>
+      <br>
+      <br>
+      <br>
+      <button id = "my-button">Plot Data</button>
+      <br>
     </div>
+
     <!-- Map -->
     <div id="map" class="map"></div>
     <!-- Javascript Imports -->
