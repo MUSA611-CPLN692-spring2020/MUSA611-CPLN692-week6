@@ -191,60 +191,84 @@ $(document).ready(function() {
   $('#cbox-input1').prop('disabled', false);
   $('#cbox-input2').prop('disabled', false);
   $('#color-input').prop('disabled', false);
-});
 
-var makeForm = function(FirstName, LastName, Address, Age, Latitude, Longitude, markerColor, IsPublic, Promise, HouseColor, Description) {
-  return {
-    "FirstName": FirstName,
-    "LastName": LastName,
-    "Address": Address,
-    "Age": Age,
-    "Latitude": Latitude,
-    "Longitude": Longitude,
-    "marker": [L.marker([Latitude, Longitude])],
-    "markerColor": markerColor,
-    "IsPublic": IsPublic,
-    "Promise": Promise,
-    "HouseColor": HouseColor,
-    "Description": Description
+  var defaultWhenEmpty = function(value, defaultValue) {
+    if (_.isEmpty(value)) {
+      return defaultValue;
+    }
+
+    return value;
   }
-};
 
-$('button').click(function() {
-  makeForm.FirstName = $('#text-input1').val();
-  console.log("FirstName", makeForm.FirstName);
+  var makeForm = function(FirstName, LastName, Address, Age, Latitude, Longitude, markerColor, IsPublic, promise, HouseColor, Description) {
+    var lat = defaultWhenEmpty(Latitude, "39.9522");
+    var long = defaultWhenEmpty(Longitude, "-75.1639");
 
-  makeForm.LastName = $('#text-input2').val();
-  console.log("LastName", makeForm.LastName);
+    return {
+      "FirstName": defaultWhenEmpty(FirstName, "Sara"),
+      "LastName": defaultWhenEmpty(LastName, "Mattio"),
+      "Address": defaultWhenEmpty(Address, "Philadelphia, PA 19104"),
+      "Age": defaultWhenEmpty(Age, "21"),
+      "Latitude": defaultWhenEmpty(Latitude, lat),
+      "Longitude": defaultWhenEmpty(Longitude, long),
+      "markers": [L.marker([parseFloat(lat), parseFloat(long)])],
+      "markerColor": defaultWhenEmpty(markerColor, "#f00"),
+      "IsPublic": defaultWhenEmpty(IsPublic, true),
+      "Promise": defaultWhenEmpty(promise, true),
+      "HouseColor": defaultWhenEmpty(HouseColor, "#3b99ca"),
+      "Description": defaultWhenEmpty(Description, "Very Sturdy")
+    }
+  };
 
-  makeForm.Address = $('#text-input3').val();
-  console.log("Address", makeForm.Address);
+  $('button').click(function() {
+    var firstName = $('#text-input1').val();
+    console.log("FirstName", firstName);
 
-  makeForm.Age = $('#numeric-input').val();
-  console.log("Age", makeForm.Age);
+    var lastName = $('#text-input2').val();
+    console.log("LastName", lastName);
 
-  makeForm.Latitude = $('#lat-input').val();
-  console.log("Latitude", makeForm.Latitude);
+    var address = $('#text-input3').val();
+    console.log("Address", address);
 
-  makeForm.Longitude = $('#long-input').val();
-  console.log("Longitude", makeForm.Longitude);
+    var age = $('#numeric-input').val();
+    console.log("Age", age);
 
-  makeForm.marker = $('#m')
+    var latitude = $('#lat-input').val();
+    console.log("Latitude", latitude);
 
-  makeForm.markerColor = $('#markercolor-input').val();
-  console.log("markerColor", makeForm.markerColor);
+    var longitude = $('#long-input').val();
+    console.log("Longitude", longitude);
 
-  makeForm.IsPublic = $('#cbox-input1')[0].checked;
-  console.log("IsPublic", makeForm.IsPublic);
+    var markerColor = $('#markercolor-input').val();
+    console.log("markerColor", markerColor);
 
-  makeForm.Promise = $('#cbox-input2')[0].checked;
-  console.log("Promise", makeForm.Promise);
+    var isPublic = $('#cbox-input1')[0].checked;
+    console.log("IsPublic", isPublic);
 
-  makeForm.HouseColor = $('#color-input').val();
-  console.log("HouseColor", makeForm.HouseColor);
+    var promise = $('#cbox-input2')[0].checked;
+    console.log("Promise", promise);
 
-  makeForm.Description = $('#text-input4').val();
-  console.log("Description", makeForm.Description);
+    var houseColor = $('#color-input').val();
+    console.log("HouseColor", houseColor);
 
+    var description = $('#text-input4').val();
+    console.log("Description", description);
 
+    var formFields = makeForm(firstName, lastName, address, age, latitude, longitude, markerColor, isPublic, promise, houseColor, description)
+
+    // reset fields so defaults take effect
+    $('#text-input1').val(formFields.FirstName);
+    $('#text-input2').val(formFields.LastName);
+    $('#text-input3').val(formFields.Address);
+    $('#numeric-input').val(formFields.Age);
+    $('#lat-input').val(formFields.Latitude);
+    $('#long-input').val(formFields.Longitude);
+    $('#markercolor-input').val(formFields.markerColor);
+    $('#cbox-input1')[0].checked = formFields.IsPublic;
+    $('#cbox-input2')[0].checked = formFields.Promise;
+    $('#color-input').val(formFields.HouseColor);
+    $('#text-input4').val(formFields.Description);
+
+    _.each(formFields.markers, function(marker) { marker.addTo(map); });
+  });
 });
