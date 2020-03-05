@@ -172,4 +172,83 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // been interpreted. It is, therefore, an example of asynchronous behavior.
 $(document).ready(function() {
   // Do your stuff here
-});
+  // task 1
+  $('#text-label1').text("please enter the person's title")
+  $('#text-label2').text("please enter the name")
+  $('#text-label3').text("please enter the address")
+  $('#number-label').text("please enter the latitude")
+  $('#number-label_2').text("please enter the longtitude")
+  $('#checkbox-label1').text("isDoctor")
+  $('#checkbox-label2').text("isLawyer")
+  $('#color-label').text("please choose a color")
+
+  // task 2
+  $('#text-input1').val("manager")
+  $('#text-input2').val("Bob")
+  $('#text-input3').val("3131 Walnut Street")
+  $('#numeric-input').val("39.955013")
+  $('#numeric-input_2').val("-75.192679")
+  $('#cbox-input1').prop('checked',true),
+  $('#cbox-input2').prop('checked',true),
+  $('#color-input').val("#336699")
+
+  // task 3
+  var person=function(title,name,address,number,isDoctor,isLaywer,color){
+    return{
+      "title":title,
+      "name":name,
+      "address":address,
+      "number":number,
+      "isDoctor":isDoctor,
+      "isLaywer":isLaywer,
+      "color":color
+    } };
+  var personinfo= person(
+      $('#text-input1').val(),
+      $('#text-input2').val(),
+      $('#text-input3').val(),
+      $('#numeric-input').val(),
+      $('#cbox-input1').prop('checked'),
+      $('#cbox-input2').prop('checked'),
+      $('#color-input').val()
+    )
+    console.log(personinfo)
+
+ // task 4
+ $('#text-input1').prop("disabled",false)
+ $('#text-input2').prop("disabled",false)
+ $('#text-input3').prop("disabled",false)
+ $('#numeric-input').prop("disabled",false)
+ $('#numeric-input_2').prop("disabled",false)
+ $('#cbox-input1').prop("disabled",false)
+ $('#cbox-input2').prop("disabled",false)
+ $('#color-input').prop("disabled",false)
+
+ // task 5 & task 6
+ $( "button" ).click(function() {
+   var location=function(title,name,address,lat,lng,isDoctor,isLaywer,color){
+     return{
+       "title":title,
+       "name":name,
+       "address":address,
+       "lat":lat,
+       "lng":lng,
+       "isDoctor":isDoctor,
+       "isLaywer":isLaywer,
+       "color":color
+     }};
+   var locationinfo= location(
+       $('#text-input1').val(),
+       $('#text-input2').val(),
+       $('#text-input3').val(),
+       $('#numeric-input').val(),
+       $('#numeric-input_2').val(),
+       $('#cbox-input1').prop('checked'),
+       $('#cbox-input2').prop('checked'),
+       $('#color-input').val()
+     )
+     console.log(locationinfo);
+     L.circleMarker([locationinfo.lat,locationinfo.lng], {radius: 10,fillColor:locationinfo.color}).addTo(map).bindPopup(locationinfo.name);
+   });
+
+   })
