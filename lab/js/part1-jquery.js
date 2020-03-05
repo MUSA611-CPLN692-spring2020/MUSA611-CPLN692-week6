@@ -67,7 +67,7 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
         Writing: $(someSelector).val(valueToSet);  // This sets the value
 
     jQuery().text();
-      With no arguments, `val` queries an html element for its contained text (not usable to get an
+      With no arguments, `text` queries an html element for its contained text (not usable to get an
       input's value!). Provided a string as an argument, it will actually set that string as the html
       element's new text.
 
@@ -170,6 +170,56 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // This is a popular pattern that you'll run into in programs that run jQuery. It says not to run
 // the function passed to `ready` until the HTML document is fully loaded and all scripts have
 // been interpreted. It is, therefore, an example of asynchronous behavior.
+
 $(document).ready(function() {
-  // Do your stuff here
+  $('#text-label1').text('Description');
+  $('#text-input1').val('Hello-World');
+
+  $('#text-label2').text('Input Latitude');
+  $('#text-input2').val('Lat');
+
+  $('#text-label3').text('Input Longitude');
+  $('#text-input3').val('Long');
+  
+  $('#number-label').text('Enter A Radius');
+  $('#numeric-input').val('Number');
+
+    
+  $('#color-label').text('Choose Marker Color');
+
+
+  var x = {};
+
+  $('#text-input1').prop('disabled', false);
+  $('#text-input2').prop('disabled', false);
+  $('#text-input3').prop('disabled', false);
+  $('#numeric-input').prop('disabled', false);
+  $('#cbox-input1').prop('disabled', false);
+  $('#cbox-input2').prop('disabled', false);
+
+  $('button').click(function(event){
+    console.log(x);
+    x.text = $('#text-input1').val();
+    x.Lat = $('#text-input2').val();
+    x.Lat = parseFloat(x.Lat);
+    x.Lng = $('#text-input3').val();
+    x.Lng = parseFloat(x.Lng);
+    x.num = $('#numeric-input').val();
+    x.check1 = $('cbox-input1').val();
+    x.check2 = $('cbox-input2').val();
+    x.marker_color = $('#color-input').val();
+
+    if(isNaN(x.Lat) && isNaN(x.Lng)){
+      L.circleMarker([39.952490, -75.193033]).bindPopup("University of Pennsylvania").addTo(map).openPopup();
+    }
+    else{
+      L.circleMarker([x.Lat, x.Lng], {radius: x.num, color:x.marker_color}).addTo(map);
+    }
+  });
+
 });
+
+//{radius: number, color: '#006600'}
+
+//lat: 39.9771532618949
+//long:-75.1716547369047
