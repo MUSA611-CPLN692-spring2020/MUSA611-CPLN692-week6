@@ -171,5 +171,80 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // the function passed to `ready` until the HTML document is fully loaded and all scripts have
 // been interpreted. It is, therefore, an example of asynchronous behavior.
 $(document).ready(function() {
-  // Do your stuff here
+  $("#text-label1").text('First Name');
+  $("#text-label2").text('Last Name');
+  $("#text-label3").text('Address');
+  $("#number-label").text('Age');
+  $("#checkbox-label1").text('Check This Box to Make Your Info Public');
+  $("#checkbox-label2").text('I Promise to Actually Do This');
+  $("#color-label").text('Color I Promise to Paint My House');
+  $("#text-input1").val('Benjamin');
+  $("#text-input2").val('Franklin');
+  $("#text-input3").val('317 Chestnut St');
+  $("#numeric-input").val('314');
+  $("#color-input").val('#ff0080');
+  $('#text-input1').prop('disabled', false);
+  $('#text-input2').prop('disabled', false);
+  $('#text-input3').prop('disabled', false);
+  $('#numeric-input').prop('disabled', false);
+  $('#text-input2').prop('disabled', false);
+  $('#cbox-input1').prop('disabled', false);
+  $('#cbox-input2').prop('disabled', false);
+  $('#color-input').prop('disabled', false);
+});
+
+var makeForm = function(FirstName, LastName, Address, Age, Latitude, Longitude, markerColor, IsPublic, Promise, HouseColor, Description) {
+  return {
+    "FirstName": FirstName,
+    "LastName": LastName,
+    "Address": Address,
+    "Age": Age,
+    "Latitude": Latitude,
+    "Longitude": Longitude,
+    "marker": [L.marker([Latitude, Longitude])],
+    "markerColor": markerColor,
+    "IsPublic": IsPublic,
+    "Promise": Promise,
+    "HouseColor": HouseColor,
+    "Description": Description
+  }
+};
+
+$('button').click(function() {
+  makeForm.FirstName = $('#text-input1').val();
+  console.log("FirstName", makeForm.FirstName);
+
+  makeForm.LastName = $('#text-input2').val();
+  console.log("LastName", makeForm.LastName);
+
+  makeForm.Address = $('#text-input3').val();
+  console.log("Address", makeForm.Address);
+
+  makeForm.Age = $('#numeric-input').val();
+  console.log("Age", makeForm.Age);
+
+  makeForm.Latitude = $('#lat-input').val();
+  console.log("Latitude", makeForm.Latitude);
+
+  makeForm.Longitude = $('#long-input').val();
+  console.log("Longitude", makeForm.Longitude);
+
+  makeForm.marker = $('#m')
+
+  makeForm.markerColor = $('#markercolor-input').val();
+  console.log("markerColor", makeForm.markerColor);
+
+  makeForm.IsPublic = $('#cbox-input1')[0].checked;
+  console.log("IsPublic", makeForm.IsPublic);
+
+  makeForm.Promise = $('#cbox-input2')[0].checked;
+  console.log("Promise", makeForm.Promise);
+
+  makeForm.HouseColor = $('#color-input').val();
+  console.log("HouseColor", makeForm.HouseColor);
+
+  makeForm.Description = $('#text-input4').val();
+  console.log("Description", makeForm.Description);
+
+
 });
