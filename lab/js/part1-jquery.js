@@ -18,7 +18,7 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
   Call getAndParseData to grab our dataset through a jQuery.ajax call ($.ajax)
 ===================== */
 
-getAndParseData();
+//getAndParseData();
 
 /* =====================
   The code here is triggered when you click on the button with ID #my-button
@@ -208,6 +208,92 @@ $('button#my-button').click(function(e) {
 // This is a popular pattern that you'll run into in programs that run jQuery. It says not to run
 // the function passed to `ready` until the HTML document is fully loaded and all scripts have
 // been interpreted. It is, therefore, an example of asynchronous behavior.
+
 $(document).ready(function() {
-  // Do your stuff here
+  // Task 1
+   $("#text-label1").text('Crime Type');
+   $("#text-label2").text('Block Name');
+   $("#text-label3").text('Street Name');
+   $("#number-label1").text('latitude');
+   $("#number-label2").text('longitude');  
+   $("#checkbox-label1").text('Is Gunshot?');
+   $("#checkbox-label2").text("Is Sex Assault?");
+   $("#color-label").text("Display Color");
+   $("#mybutton").text("Plot Data");
+
+  // Task 2
+   $("#text-input1").val('eg. robbery');
+   $("#text-input2").val('eg. university city');
+   $("#text-input3").val('eg. 3600 Chestnut ST');
+   $("#numeric-input1").val(39.954367);
+   $("#numeric-input2").val(-75.162158);
+   $("#cbox-input1").prop( "checked", false );
+   $("#cbox-input2").prop( "checked", true );
+   $("#color-input").val('#2f67C3');
+
+  // Task 3
+  var dict = {
+      'crime type': $('#text-input1').val(),
+      'block name': $('#text-input2').val(),
+      'street name': $('#text-input3').val(),
+      'lat': $('#numeric-input1').val(),
+      'lon': $('#numeric-input2').val(),
+      'is gunshot': $('#cbox-input1').prop('checked'),
+      'is sex assault': $('#cbox-input2').prop('checked'),
+      'display color': $('#color-input').val()
+    }
+  console.log(dict)
+
+  // Task 4
+   $("#text-input1").prop('disabled', false);
+   $("#text-input2").prop('disabled', false);
+   $("#text-input3").prop('disabled', false);
+   $("#numeric-input1").prop('disabled', false);
+   $("#numeric-input2").prop('disabled', false);
+   $("#cbox-input1").prop('disabled', false);
+   $("#cbox-input2").prop('disabled', false);
+   $("#color-input").prop('disabled', false);
+
+  // Task 5
+   $("button#mybutton").click(function() {
+
+      var dictionary = {
+      'crime type': $('#text-input1').val(),
+      'block name': $('#text-input2').val(),
+      'street name': $('#text-input3').val(),
+      'lat': $('#numeric-input1').val(),
+      'lon': $('#numeric-input2').val(),
+      'is gunshot': $('#cbox-input1').prop('checked'),
+      'is sex assault': $('#cbox-input2').prop('checked'),
+      'display color': $('#color-input').val()
+      }
+
+     console.log(dictionary);
+
+     if (dictionary.lat == '') {
+       dictionary.lat = 39.954367;
+     }
+     if (dictionary.lon == '') {
+       dictionary.lon = -75.162158;
+     }
+     if (dictionary['crime type'] == '') {
+       dictionary['crime type'] = 'robbery';
+     }
+     if (dictionary['display color'] == '') {
+       dictionary['display color'] = '#2f67C3';
+     }
+
+
+    var icon = L.divIcon({
+         className: "leaflet-marker-icon",
+         iconSize: [0, 50],
+         iconAnchor: [0, 0],
+         popupAnchor: [0, -20],
+         html: `<i class="fas fa-exclamation-triangle" style = "color: ${dictionary['display color']}"></i>`
+       })
+
+    marker = L.marker([dictionary.lat, dictionary.lon], {icon: icon}).addTo(map).bindPopup(dictionary['crime type']);
+
+  });
+
 });

@@ -64,13 +64,15 @@ $('button#my-button').click(function(e) {
   url = $('#url').val();
   console.log("data source:", url);
 
+
+  // Input the latitude key, for example, X in the solar panel dataset.
   lat = $('#lat').val();
   console.log("latitude key:", lat);
 
   lon = $('#lon').val();
   console.log("longitude key:", lon);
 
-  // Input a value field that will affect the size of the circle
+  // Input a value field that will affect the size of the circle, for example, KW in the solar panel dataset.
   value = $('#value').val();
   console.log("value field:", value);
   
