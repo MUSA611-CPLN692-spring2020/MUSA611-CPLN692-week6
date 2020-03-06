@@ -79,7 +79,7 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
   Task 1: Using javascript, change the HTML to create useful labels for our UI
     *NOTE*: Do not edit part1-jquery.html. You should be able to change the text of an HTML element
             with jQuery alone! Try this: $(<selector>).text('text to set');
-
+    checkbox jQuery
     Let's change the labels of our input elements so that they're meaningful. We don't want the
     page to say 'This is the first text input'. Instead we should imagine useful inputs and label
     accordingly. Be sure that the labels you choose make sense for the element types provided. A
@@ -171,5 +171,83 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // the function passed to `ready` until the HTML document is fully loaded and all scripts have
 // been interpreted. It is, therefore, an example of asynchronous behavior.
 $(document).ready(function() {
-  // Do your stuff here
+  //Task 1
+  $('#text-label1').text("What do you want to know?");
+  $('#text-label2').text("Your Name");
+  $('#text-label3').text("Your Address");
+  $('#number-label').text('Your Age');
+  $('#checkbox-label1').text('isFemale');
+  $('#checkbox-label2').text('isDoctor');
+  $('#color-label').text('Favourite Color');
+  //Task 2
+  $('#text-input1').val('Everything!');
+  $('#text-input2').val('bob');
+  $('#text-input3').val('Meyerson B13');
+  $('#numeric-input').val('48');
+  $('#cbox-input1').prop( "checked", true );
+  $('#cbox-input2').prop( "checked", true );
+  $('#color-input').val('#90EE90');
+  $('#numeric-input2').val('39.954648');
+  $('#numeric-input3').val('-75.202905')
+  //Task 3
+    var personInfo = function(wantToKnow,name,address,age,isFemale,isDoctor,color,lat,long){
+      return {
+        'Things you want to know':wantToKnow,
+        'Person Name':name,
+        'Address':address,
+        'Age':age,
+        'isFemale':isFemale,
+        'isDoctor':isDoctor,
+        'Favorite Color':color,
+        'latitude':lat,
+        'longtitude':long
+      }
+    }
+    person = personInfo(
+      $('#text-input1').val(),
+      $('#text-input2').val(),
+      $('#text-input3').val(),
+      $('#numeric-input').val(),
+      $('#cbox-input1').prop('checked'),
+      $('#cbox-input2').prop('checked'),
+      $('#color-input').val(),
+      $('#numeric-input2').val(),
+      $('#numeric-input3').val()
+    )
+   console.log(person)
+   //Task 4
+   $('#text-input1').prop('disabled',false);
+   $('#text-input2').prop('disabled',false);
+   $('#text-input3').prop('disabled',false);
+   $('#numeric-input').prop('disabled',false);
+   $('#cbox-input1').prop('disabled',false);
+   $('#cbox-input2').prop('disabled',false);
+   $('#color-input').prop('disabled',false);
+   //Task 5 Task 6
+   var dataCollect = {
+     'textInput1': undefined,
+     'textInput2': undefined,
+     'textInput3': undefined,
+     'numericInput': undefined,
+     'cboxInput1': undefined,
+     'cboxInput2': undefined,
+     'colorInput': undefined,
+     'latitude': undefined,
+     'longtitude': undefined
+   }
+   $('button').click(function(e){
+     dataCollect.textInput1=$('#text-input1').val();
+     dataCollect.textInput2=$('#text-input2').val();
+     dataCollect.textInput3=$('#text-input3').val();
+     dataCollect.numericInput=$('#numeric-input').val();
+     dataCollect.cboxInput1=$('#cbox-input1').prop('checked');
+     dataCollect.cboxInput2=$('#cbox-input2').prop('checked');
+     dataCollect.colorInput=$('#color-input').val();
+     dataCollect.latitude=$('#numeric-input2').val();
+     dataCollect.longtitude=$('#numeric-input3').val();
+     console.log(dataCollect);
+     L.circleMarker([dataCollect.latitude,dataCollect.longtitude],{radius:10,color:dataCollect.colorInput}).addTo(map)
+   })
+
+
 });
