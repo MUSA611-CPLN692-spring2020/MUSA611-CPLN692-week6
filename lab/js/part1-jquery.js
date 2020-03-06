@@ -175,60 +175,82 @@ $('part1-jquery.html').ready(function() {
   $('#main-heading').text('find the spot');
   $('#text-label1').text('longtitude');
   $("#text-label2").text("latitude");
-  $("#text-label3").text("street");
-  $("#number-label").text("zipcode");
-  $("#checkbox-label1").text("proximity");
+  $("#text-label3").text("name");
+  $("#number-label").text("number");
+  $("#checkbox-label1").text("big");
   $("#checkbox-label2").text("market");
-  $("#color-label").text("colors");
+  $("#color-label").text("color");
   $('button').text('show');
 
   //task 2
-  $("#text-input1").val(-75);
-  $("#text-input2").val(39);
-  $("#text-input3").val('chestnut');
+  $("#text-input1").val(-75.172);
+  $("#text-input2").val(39.95);
+  $("#text-input3").val('target');
   $("#numeric-input").val(5);
   $("#cbox-input1").prop("checked", true);
   $("#cbox-input2").prop("checked", true);
   $("#color-input").val("#ff4500");
 
   //task 3
-  var long = $('text-input1').val();
-  var lat = $("#text-input2").val();
-  var street = $("#text-input3").val();
-  var zipCode = $("#numeric-input").val();
-  var prox = $("#cbox-input1").prop();
+/*
+  var LNG = $('text-input1').val();
+  var LAT = $("#text-input2").val();
+  var name = $("#text-input3").val();
+  var number = $("#numeric-input").val();
+  var big = $("#cbox-input1").prop();
   var market = $("#cbox-input2").prop();
-
-  var Label =  function(long, lat, street, zipCode, prox, market){
-    return {
-      "long": long,
+*/
+  var Label =  function(lng, lat, name, number, big, market, color){
+    a = {
+      "lng": lng,
       "lat": lat,
-      "street": chestnut,
-      "zipCode": 19104,
-      "prox": close,
-      "market": acme,
+      "name": name,
+      "number": number,
+      "big": big,
+      "market": market,
+      "color": color,
     };
+    console.log(a);
+    return a;
   };
 
-  Label("chestnut");
+Label($('text-input1').val(), $("#text-input2").val(), $("#text-input3").val(), $("#numeric-input").val(), $("#cbox-input1").val(), $("#cbox-input2").val(), $("#color-input").val());
   /*
   var Label1 = {
     [$('#text-label1').text()] = [$('#text-input1').val()]
   }
-
-
   */
+
   //task 4
+//  $('#text-input2').prop('disabled', false); -> <input id="text-input2" type="number">;
+//  $('#text-input2').prop('disabled', true);  -> <input id="text-input2" type="number" disabled>
+$("#text-input1").prop('disabled', false);
+$("#text-input2").prop('disabled', false);
+$("#text-input3").prop('disabled', false);
+$("#numeric-input").prop('disabled', false);
+$("#cbox-input1").prop('disabled', false);
+$("#cbox-input2").prop('disabled', false);
+$("#color-input").prop('disabled', false);
+
 
   //task 5
+  $('button').click(function(){
+    Label($('text-input1').val(), $("#text-input2").val(), $("#text-input3").val(), $("#numeric-input").val(), $("#cbox-input1").val(), $("#cbox-input2").val(), $("#color-input").val());
+});
 
-  //task 6
+//    var fillColor = $('#color-input').val()
+      var style = {'radius': 10,
+                    'fillColor': $('#color').val(),
+                    'weight': 2,
+                    'color': $('#color').val(),
+                    'fillOpacity': 0.7,
+      };
 
-  //task 7
-
-  //task 8
-
-  //task 9
+    $('#dot').click(function(){
+        L.circleMarker([$('text-input1').val(), $('text-input2').val()], style)
+        .bindPopup($('#text-input3').val())
+        .addTo(map);
+    });
 
 
 });
