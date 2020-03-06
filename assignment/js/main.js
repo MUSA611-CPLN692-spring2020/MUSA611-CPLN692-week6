@@ -48,6 +48,7 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
   ext: 'png'
 }).addTo(map);
 
+var markers;
 // when button clicks, this happens
 $("button").click(function () {
 
@@ -88,11 +89,13 @@ $("button").click(function () {
   var removeMarkers = function (marker) {
     return _.map(marker, function (x) {map.removeLayer(x); }); };
 
-  if (typeof(markers) !== "undefined") {
-    removeMarkers(markers); }
-
   downloadData.done(function (data) {
       var parsed = parseData(data);
-      var markers = makeMarkers(parsed);
+      if (typeof(markers) !== "undefined") {
+        removeMarkers(markers);
+        markers = [];}
+
+      markers = makeMarkers(parsed);
+
       plotMarkers(markers); });
 });
