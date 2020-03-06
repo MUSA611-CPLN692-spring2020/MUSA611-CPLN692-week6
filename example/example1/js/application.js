@@ -8,7 +8,7 @@ var resetMap = function() {
 var getAndParseData = function() {
   // Filter, clean, and store data
   $.ajax('https://raw.githubusercontent.com/CPLN690-MUSA610/datasets/master/json/philadelphia-crime-snippet.json').done(function(result) {
-    var parsed = JSON.parse(result);
+    var parsed = JSON.parse(result); //done: pass the response to the next
     var numericCoords = _.filter(parsed, function(datum) {
       return typeof datum.Coordinates !== 'number';
     });

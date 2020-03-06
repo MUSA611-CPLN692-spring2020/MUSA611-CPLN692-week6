@@ -4,6 +4,17 @@
 
 ## Week 4 Review
 
+Notes
+$ -> ajax
+$('#num1') //calling jQuery and an element
+elem = $('#num1') //elem = html elements
+elem.val()
+
+elem = $("#experiment")
+jQuery.event
+alert("whatever")
+
+
 #### Intro & Week 4 Review
 - More developer tools
   - Viewing/playing with HTML and CSS in `elements`
