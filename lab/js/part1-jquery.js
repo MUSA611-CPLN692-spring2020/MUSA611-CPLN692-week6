@@ -171,22 +171,27 @@ $('#number-label').text('Cost of meal for 2');
 
       appState.booleanField = $('#cbox-input2').prop("checked");
       console.log("booleanField", appState.booleanField);
-/*
-      console.log([appState.stringField].length);
 
-      if ([appState.stringField].length==1) {
-        appState.stringField = 'General Restaurant';
+      console.log(appState.stringField.length);
+      console.log(appState.numericFieldx.length);
+      console.log(appState.numericFieldy.length);
+
+      if (appState.stringField.length<1) {
+        appState.stringField = 'Default Restaurant';
       }
-      if ([appState.numericFieldx].length==1) {
+      if (appState.numericFieldx.length<1) {
 
-        appState.numericFieldx = '39.45';
+        appState.numericFieldx = '39.0';
 
       }
-      if ([appState.numericFieldy].length==1) {
+      if (appState.numericFieldy.length<1) {
 
-        appState.numericFieldy = '-75.16';
+        appState.numericFieldy = '-75.00';
       }
-*/
+
+      console.log(appState.stringField);
+      console.log(appState.numericFieldx);
+      console.log(appState.numericFieldy);
 
 
  L.marker([appState.numericFieldx,appState.numericFieldy]).bindPopup(appState.stringField).openPopup().addTo(map);
