@@ -104,6 +104,8 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
     want to get formatting exactly right to set a color field; experiment in the console to see what
     the color you'll specify should look like).
 
+.is(':checked')
+.prop(propertyname, value)
   Task 3: Getting (reading) input values
     Write the code necessary to read from your input form and return a javascript object (with keys
     to clarify the meaning of each value) that has all the data that's stored in your form.
@@ -170,6 +172,92 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // This is a popular pattern that you'll run into in programs that run jQuery. It says not to run
 // the function passed to `ready` until the HTML document is fully loaded and all scripts have
 // been interpreted. It is, therefore, an example of asynchronous behavior.
-$(document).ready(function() {
-  // Do your stuff here
+//$('.leaflet-marker-icon').css('background', 'blue');
+
+
+
+
+$('part1-jquery').ready(function() {
+//task1
+  $('#text-label1').text('Marker Title');
+  $('#text-label2').text('User Name');
+  $('#text-label3').text('Address');
+  $('#number-label').text('Latitude');
+  $('#number-label2').text('Longitude');
+  $('#checkbox-label1').text('Is Student');
+  $('#checkbox-label2').text('Is Busy');
+  $('#color-label').text('Favorite Color');
+  $('#click').text('Print');
+  //task2
+  $('#text-input1').val('First one');
+  $('#text-input2').val('JY');
+  $('#text-input3').val('Chestnut Street');
+  $('#numeric-input').val('39.949376');
+  $('#numeric-input2').val('-75.172418');
+  $('#cbox-input1').prop('checked',true);
+  $('#cbox-input2').prop('checked',true);
+  $('#color-input').val('#83D3CF');
+//task3
+var makeobj = function (title, name, address,number,number2,student, busy,color) {
+  var a= {
+    "title":title,
+    "name":name,
+    "Address":address,
+    "Latitude":number,
+    "Longitude":number2,
+    "Student":student,
+    "Busy":busy,
+    "Favorite Color":color
+  }
+  console.log(a)
+  return a
+}
+
+makeobj($('#text-input1').val(),$('#text-input2').val(),$('#text-input3').val(),
+$('#numeric-input').val(),$('#numeric-input2').val(),$('#cbox-input1').val(),$('#cbox-input2').val(),$('#color-input').val());
+
+/*
+  var apple = {};
+  apple[$('#text-label1').text()]=  $('#text-input1').val();
+  apple[$('#text-label2').text()]=  $('#text-input2').val();
+  apple[$('#text-label3').text()]=  $('#text-input3').val();
+  apple[$('#number-label').text()]=  $('#numeric-input').val();
+  apple[$('#checkbox-label1').text()]=  $('#cbox-input1').val();
+  apple[$('#checkbox-label2').text()]=  $('#cbox-input2').val();
+  apple[$('#color-label').text()]=  $('#color-input').val();
+  console.log(apple);
+*/
+
+//task 4
+  $('#text-input1').prop('disabled', false);
+  $('#text-input2').prop('disabled', false);
+  $('#text-input3').prop('disabled', false);
+  $('#numeric-input').prop('disabled', false);
+  $('#numeric-input2').prop('disabled', false);
+  $('#cbox-input1').prop('disabled', false);
+  $('#cbox-input2').prop('disabled', false);
+  $('#color-input').prop('disabled', false);
+
+
+//task5
+  $( "#click" ).click(function(){makeobj($('#text-input1').val(),$('#text-input2').val(),$('#text-input3').val(),
+  $('#numeric-input').val(),$('#numeric-input2').val(),$('#cbox-input1').val(),$('#cbox-input2').val(),$('#color-input').val())});
+
+
+//task6
+var thecolor = $('#color-input').val()
+  var styles = {'radius': 20,
+                'fillColor':thecolor,
+              'weight':3,
+            'color':thecolor,
+          'fillOpacity':0.7 };
+
+
+  $( "#plot" ).click(function(){L.circleMarker([$('#numeric-input').val(), $('#numeric-input2').val()],styles)
+      .bindPopup($('#text-input2').val())
+      .addTo(map)});
+
+
+
+
 });
