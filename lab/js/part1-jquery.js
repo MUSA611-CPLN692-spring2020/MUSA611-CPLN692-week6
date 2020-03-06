@@ -171,5 +171,66 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // the function passed to `ready` until the HTML document is fully loaded and all scripts have
 // been interpreted. It is, therefore, an example of asynchronous behavior.
 $(document).ready(function() {
-  // Do your stuff here
+  //Task 1
+  $("#text-label1").text("First Name");
+  $("#text-label2").text("Last Name");
+  $("#text-label3").text("Postal Code");
+  $("#number-label").text("Age");
+  $("#checkbox-label1").text("Student or Not");
+  $("#checkbox-label2").text("Lives in Center City");
+  $("#color-label").text("Favorite Color");
+  $('button').text("Plot");
+  //Task 2
+  $("#text-input1").val("Cathy");
+  $("#text-input2").val("Xu");
+  $("#text-input3").val("19104");
+  $("#numeric-input").val(23);
+  $("#cbox-input1").prop("checked", true);
+  $("#cbox-input2").prop("checked", true);
+  $("#color-input").val("#ea83b0");
+  //Task 3
+  var myObj = new Object();
+  myObj[$("#text-label1").text()] = $("#text-input1").val();
+  myObj[$("#text-label2").text()] = $("#text-input2").val();
+  myObj[$("#text-label3").text()] = $("#text-input3").val();
+  myObj[$("#number-label").text()] = $("#numeric-input").val();
+  myObj[$("#checkbox-label1").text()] = $("#cbox-input1").val();
+  myObj[$("#checkbox-label2").text()] = $("#cbox-input2").val();
+  myObj[$("#color-label").text()] = $("#color-input").val();
+  //console.log(myObj);
+  //return myObj;
+  //Task 4
+  $('#text-input1').prop('disabled', false);
+  $('#text-input2').prop('disabled', false);
+  $('#text-input3').prop('disabled', false);
+  $('#numeric-input').prop('disabled', false);
+  $('#cbox-input1').prop('disabled', false);
+  $('#cbox-input2').prop('disabled', false);
+  $('#color-input').prop('disabled', false);
+  //Task 5
+  $("button" ).click(function() {
+    var myObj = new Object();
+    myObj[$("#text-label1").text()] = $("#text-input1").val();
+    myObj[$("#text-label2").text()] = $("#text-input2").val();
+    myObj[$("#text-label3").text()] = $("#text-input3").val();
+    myObj[$("#number-label").text()] = $("#numeric-input").val();
+    myObj[$("#checkbox-label1").text()] = $("#cbox-input1").prop("checked");
+    myObj[$("#checkbox-label2").text()] = $("#cbox-input2").prop("checked");
+    myObj[$("#color-label").text()] = $("#color-input").val();
+    console.log(myObj);
+  });
+  //Task 6
+  $("#color-input").after("<br>","<br>","<label id='number-label2' for='numeric-input2'>Latitude</label>",
+  '<input type="number" id="numeric-input2">',"<br>","<br>","<label id='number-label3' for='numeric-input3'>Longitude</label>",
+  '<input type="number" id="numeric-input3">',"<br>","<br>");
+  $("#numeric-input2").val(39.952361);
+  $("#numeric-input3").val(-75.163593);
+  $("#text-label3").text("Description");
+  $("#text-label3").val('This is a description.');
+  $("button" ).click(function() {
+    var marker = L.circleMarker([$("#numeric-input2").val(), $("#numeric-input3").val()], {
+      color: $("#color-input").val()});
+    marker.addTo(map);
+    marker.bindPopup($("#text-label3").val()).openPopup();
+  });
 });
