@@ -94,7 +94,11 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
     you might want to include a name, an address, an age, a couple of boolean characteristics, and a
     favorite color. Don't spend too much time on thinking about the perfect object to represent with
     this form, just about anything will do.
+===================== */
 
+
+
+/* =====================
   Task 2: Setting (writing) input values
     *NOTE*: An input's value is not the same as an HTML element's text. We use $(selector).val() as
             opposed to $(selector).text() in this case.
@@ -171,5 +175,68 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // the function passed to `ready` until the HTML document is fully loaded and all scripts have
 // been interpreted. It is, therefore, an example of asynchronous behavior.
 $(document).ready(function() {
-  // Do your stuff here
+   $('#text-label1').text('bike');
+   $('#text-label2').text('year');
+   $('#text-label3').text('address');
+   $('#number-label1').text('lat');
+   $('#number-label2').text('long');
+   $('#checkbox-label1').text('drinking');
+   $('#checkbox-label2').text('speeding');
+   $('#color-label').text('lable');
+
+   $('#text-input1').val('mode');
+   $('#text-input2').val('2016');
+   $('#text-input3').val('4114 powelton');
+   $('#numeric-input1').val(40.00);
+   $('#numeric-input2').val(-75.08);
+   $('#cbox-input1').prop('checked',false);
+   $('#cbox-input2').prop('checked',true);
+
+
+
+   var input = {
+     'bike': $('#text-input1').val(),
+      'year': $('#text-input2').val(),
+      'address': $('#text-input3').val(),
+      'lat':$('#numeric-input1').val(),
+      'long':$('#numeric-input2').val(),
+      'drinking':$('#cbox-input1').prop('checked'),
+      'speeding':$('#cbox-input2').prop('checked')
+   }
+   console.log(input)
+
+
+   $('#text-input1').prop('disabled',false);
+   $('#text-input2').prop('disabled',false);
+   $('#text-input3').prop('disabled',false);
+   $('#numeric-input1').prop('disabled',false);
+   $('#numeric-input2').prop('disabled',false);
+   $('#cbox-input1').prop('disabled',false);
+   $('#cbox-input2').prop('disabled',false);
+
+   $('button#button1').click(function(){
+     var input = {
+       'bike': $('#text-input1').val(),
+        'year': $('#text-input2').val(),
+        'address': $('#text-input3').val(),
+        'lat':$('#numeric-input1').val(),
+        'long':$('#numeric-input2').val(),
+        'drinking':$('#cbox-input1').prop('checked'),
+        'speeding':$('#cbox-input2').prop('checked'),
+        'lable': $('#color-input').val()
+     }
+     console.log(input)
+
+     if (input['lat'] == ''){
+       input.lat = 40.00;
+     }
+     if (input['long'] == ''){
+       input.long = -75.08;
+     }
+     if(input['bike'] == ''){
+       input['bike'] = 'mode'
+     }
+
+    marker = L.marker([input.lat, input.lon]).addTo(map).bindPopup(input['bike']);
+   })
 });

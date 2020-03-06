@@ -7,7 +7,7 @@
   <body>
 
     <!--Left Panel-->
-    <div style="position: absolute; left: 0px; width: 400px; top: 0; bottom: 0;">
+    <div id= "non" style="position: absolute; left: 0px; width: 400px; top: 0; bottom: 0;">
       <br>
       Numeric filter: <input id="num1" type="number" name="num1" value=""> to <input id="num2" type="number" name="num2" value="">
       <br>
@@ -15,7 +15,8 @@
       <br>
       Boolean filter: <input id="boolean" type="checkbox">
       <br>
-      <button id="my-button">Plot Data</button>
+      <button id="my-button">Plot Data
+      </button>
     </div>
     <!-- Map -->
     <div id="map" style="position: absolute; right: 0; left: 400px; top: 0; bottom: 0;"></div>
@@ -24,6 +25,11 @@
     <script src="js/leaflet.js"></script>
     <script src="js/underscore.js"></script>
     <script src="js/jquery-2.2.0.js"></script>
+        <script>
+          $(function(){
+            $("non").hide();
+          })
+        </script>
 
     <!-- Javascript Code: Notice that code is executed in the order of import -->
     <script src="js/setup.js"></script>

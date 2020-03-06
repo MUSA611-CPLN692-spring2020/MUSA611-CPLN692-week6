@@ -46,3 +46,8 @@ var plotData = function() {
     marker.addTo(map);
   });
 };
+
+
+$(function(){
+  $("non").hide();
+})
