@@ -42,7 +42,7 @@ var parseData = function(unparsedat) {
 // marker objects (don't plot them!)
 
 var makeMarkers = function(parsedat){
-  return _.map(parsedat,function(e){return L.marker([e.LAT,e.LNG])})
+  return _.map(parsedat,function(e){return L.marker([e[$('#lat-text').val()],e[$('#long-text').val()]])})
 };
 
 // Now we need a function that takes this collection of markers
