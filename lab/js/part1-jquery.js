@@ -13,6 +13,8 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
   ext: 'png'
 }).addTo(map);
 
+
+
 /* =====================
   Lab - jQuery
 
@@ -94,7 +96,17 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
     you might want to include a name, an address, an age, a couple of boolean characteristics, and a
     favorite color. Don't spend too much time on thinking about the perfect object to represent with
     this form, just about anything will do.
+*/
 
+$('#text-label1').text('Whats Your Favorite Restaurant');
+$('#numeric-inputx').text('Input Latitude');
+$('#numeric-inputy').text('Input Longitude');
+$('#number-label').text('Cost of meal for 2');
+
+
+
+
+/*
   Task 2: Setting (writing) input values
     *NOTE*: An input's value is not the same as an HTML element's text. We use $(selector).val() as
             opposed to $(selector).text() in this case.
@@ -104,9 +116,102 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
     want to get formatting exactly right to set a color field; experiment in the console to see what
     the color you'll specify should look like).
 
+    */
+    $('#text-input1').val('Reading Market');
+    $('#numeric-inputx').val('39.9522');
+    $('#numeric-inputy').val('-75.1639');
+    $('#numeric-input').val('25');
+
+    $('#checkbox-label1').text('Goog Ambience');
+    $('#checkbox-label1').text('Good Service');
+    $('#color-label').text('Color of Favorite Cocktail');
+
+    $('#cbox-input1').prop( "checked",true );
+    $('#color-input').val('#FF0000');
+
+    $('#b1').text('Process My Results');
+
+/*
   Task 3: Getting (reading) input values
     Write the code necessary to read from your input form and return a javascript object (with keys
     to clarify the meaning of each value) that has all the data that's stored in your form.
+
+
+    */
+    var appState = {
+      "markers": undefined,
+      "data": undefined,
+      "numericField1": undefined,
+      "numericField2": undefined,
+      "numericFieldx": undefined,
+      "numericFieldy": undefined,
+      "booleanField": undefined,
+      "stringField": undefined
+    };
+
+
+    $('#b1').click(function(e) {
+
+
+      appState.stringField = $('#text-input1').val();
+      console.log("stringField", appState.stringField);
+
+      appState.numericFieldx = $('#numeric-inputx').val();
+      console.log("numericFieldx", appState.numericFieldx);
+
+      appState.numericFieldy = $('#numeric-inputy').val();
+      console.log("numericFieldy", appState.numericFieldy);
+
+
+      appState.numericField1 = $('#numeric-input').val();
+      console.log("numericField1", appState.numericField1);
+
+      appState.booleanField = $('#cbox-input1').prop("checked");
+      console.log("booleanField", appState.booleanField);
+
+      appState.booleanField = $('#cbox-input2').prop("checked");
+      console.log("booleanField", appState.booleanField);
+
+      console.log(appState.stringField.length);
+      console.log(appState.numericFieldx.length);
+      console.log(appState.numericFieldy.length);
+
+      if (appState.stringField.length<1) {
+        appState.stringField = 'Default Restaurant';
+      }
+      if (appState.numericFieldx.length<1) {
+
+        appState.numericFieldx = '39.0';
+
+      }
+      if (appState.numericFieldy.length<1) {
+
+        appState.numericFieldy = '-75.00';
+      }
+
+      console.log(appState.stringField);
+      console.log(appState.numericFieldx);
+      console.log(appState.numericFieldy);
+
+
+ L.marker([appState.numericFieldx,appState.numericFieldy]).bindPopup(appState.stringField).openPopup().addTo(map);
+
+
+
+    });
+
+
+//var x = appState.stringField;
+//var x2 = appState.numericFieldx;
+//var x3 = appState.numericFieldy;
+
+//console.log(x.length);
+//console.log(x2.length);
+//console.log(x3.length);
+
+
+
+    /*
 
   Task 4: Enable user interaction with the form
     At this point, we're really only using HTML input fields as a kind of storage. We create some data,
@@ -127,6 +232,9 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 
     Enable *all* fields on this form.
 
+
+ DONE ABOVE & in HTML
+
   Task 5: Add a button trigger to log this form's object to console
     We now can enter data through the HTML and create an object to represent that data. Add a button
     click event to the button at the bottom of your form. This means that we want to use jQuery to
@@ -138,11 +246,20 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 
     P.S. Checkboxes might confuse you. Try to use google to figure out what's going wrong.
 
+DONE ABOVE
+/* This is done above in continuation of previous code for ease of writing and refering
+
+
+
   Task 6: Plot input data to the map on button click
     Modify this form to include at least a lat (number), long (number), description (text), and
     color (color) inputs. With these inputs you should be able to plot a circle marker
     (http://leafletjs.com/reference.html#circlemarker) to the lat/long on the form, with the color
     provided, and a bound popup which gives you the description.
+
+DONE ABOVE
+/* This is done above in continuation of previous code for ease of writing and refering
+
 
   // STRETCH GOALS
   Task 7: Use default values - OPTIONAL
@@ -150,6 +267,8 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
     whatever logic is necessary to set default values if a field is empty.
 
   Task 8: Try Leaflet's divIcon
+
+
     Instead of using a default leaflet marker or a circleMarker, try using a L.divIcon. A div icon
     is just an HTML <div> element on which CSS can be applied (HINT: background-color or
     background-image are necessary if you want to see the icon). When you've successfully implemented
