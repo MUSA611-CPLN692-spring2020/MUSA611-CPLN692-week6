@@ -258,7 +258,6 @@ var buttonClick = function(){
   
 }
 
-
 $(document).ready(function() {
   updateLabels();
   setValues();

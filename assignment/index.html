@@ -9,9 +9,22 @@
   <body>
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- =====================
-      Add elements in this space
-      ====================== -->
+      <h1 id="main-heading">Personal Point Plotter</h1>
+      <label id="text-label1" for="text-input1">Load your data here:</label>
+      <input id="text-input1" class="input-text" type="text" placeholder="Link here" value="Link to dataset" disabled>
+      <br>
+      <br>
+      <label id="text-label2" for="text-input2">Label for Latitude in your data:</label>
+      <input id="text-input2" class="input-text" type="text" placeholder="Lat here" value="eg. LAT" disabled>
+      <br>
+      <br>
+      <label id="text-label3" for="text-input3">Label for Longitude in your data:</label>
+      <input id="text-input3" class="input-text" type="text" placeholder="Lng here" value="eg. LNG" disabled>
+      <br>
+      <br>
+      <br>
+      <button>Plot points!!!!</button>
+      <!-- <button>Remove points!!!!</button> -->
     </div>
     <!-- Map -->
     <div id="map" class="map"></div>
