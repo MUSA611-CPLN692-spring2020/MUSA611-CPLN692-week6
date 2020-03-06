@@ -170,6 +170,95 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // This is a popular pattern that you'll run into in programs that run jQuery. It says not to run
 // the function passed to `ready` until the HTML document is fully loaded and all scripts have
 // been interpreted. It is, therefore, an example of asynchronous behavior.
+
+//====================================================================
 $(document).ready(function() {
   // Do your stuff here
+  // Task 1 selector.text()
+  $('h1').text('PROFILE');
+  $("#text-label1").text('NAME');
+  $("#text-label2").text('AGE');
+  $("#text-label3").text('HOMETOWN');
+  $("#number-label").text('NUMBER OF FAMILIES');
+  $('#checkbox-label1').text('MALE');
+  $('#checkbox-label2').text('FEMALE');
+  $('#color-label').text('Favorite COLOR');
+  $('button').text('SUBMIT');
+
+  // Task 2 use selector.val()
+  $('#text-input1').val('Ran');
+  $('#text-input2').val(24);
+  $('#text-input3').val('CHINA');
+  $("#numeric-input").val(5);
+  $('#cbox-input2').prop("checked", true); //Check the box
+  $('#color-input').val('#2ca25f');
+
+  // Task 3 and Task 5
+ elem=$('button');
+ //elem.click(function (x) {
+    //alert('SUCCESS');
+   //} );
+
+var getConsole=function(name,age,hometown,numberoffamilies,favoriteColor,male,female)
+   {
+     return{
+     "name":name,
+     "age":age,
+     "hometown":hometown,
+    "numberoffamilies":numberoffamilies,
+    "favoriteColor":favoriteColor,
+    "Male":male,
+    "Female":female
+  };
+};
+
+//Click button and console
+/*
+elem.click(function(y){
+  console.log(getConsole($('#text-input1').val(),
+  $('#text-input2').val(),
+  $('#text-input3').val(),
+  $("#numeric-input").val(),
+  $('#color-input').val(),
+  $('#cbox-input1[type=checkbox]').prop('checked'),
+  $('#cbox-input2[type=checkbox]').prop('checked')
+));
+
+  alert('submitted!');
+}
+);
+*/
+
+ // Task 4
+ $('#text-input1').prop('disabled', false);
+ $('#text-input2').prop('disabled', false);
+ $('#text-input3').prop('disabled', false);
+ $("#numeric-input").prop('disabled', false);
+ $('#cbox-input1').prop('disabled', false);
+ $('#cbox-input2').prop('disabled', false);
+ $('#color-input').prop('disabled', false);
+
+// Task 6
+//Modify this form to include at least a lat (number), long (number), description (text), and color (color) inputs.
+$("#color-input").after('<br>', '<br>','<label id="latitude" for="latitude">Latitude</label>', '<input type="number" id="latitude-input">',
+'<br>', '<br>', '<label id="longitude" for="longitude"> Longitude </label>', '<input type="number" id="longitude-input">',
+'<br>', '<br>', '<label id="description" for="description"> Description </label>', '<input id="description-input" class="input-text" type="text" placeholder="text here">',
+'<br>', '<br>', '<label id="color-label2" for="color-input2">Choose a color for markers</label>','<input type="color" id="color-input2">');
+
+//Found a coordinate
+$('#latitude-input').val(39.955206);
+$('#longitude-input').val(-75.1639);
+
+//Plot
+$('button').click(function(){
+  console.log($('#color-input2').val());
+  alert('SUBMITTED!');
+
+  L.circleMarker([$('#latitude-input').val(), $('#longitude-input').val()],{
+   color: $('#color-input2').val(),
+   radius:15
+ }).addTo(map).bindPopup($('#description-input').val());
+
+  });
+
 });
