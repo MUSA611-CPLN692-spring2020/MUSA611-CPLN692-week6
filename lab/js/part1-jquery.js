@@ -172,4 +172,61 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // been interpreted. It is, therefore, an example of asynchronous behavior.
 $(document).ready(function() {
   // Do your stuff here
+
+// Task 1:
+  $("#text-label1").text("Description");
+  $("#text-label2").text("Latitude");
+  $("#text-label3").text("Longitude");
+  $("#number-label").text("Age");
+  $("#checkbox-label1").text("Heart disease");
+  $("#checkbox-label2").text("Diabetes");
+  $("#color-label").text("Favorite color");
+
+//Task 2:
+  $("#text-input1").val("One emergency case")
+  $("#text-input2").val("39.952803")
+  $("#text-input3").val("-75.150012")
+  $("#numeric-input").val("31");
+  $("#color-input").val('#00ff00');
+  $("#cbox-input2").prop("checked", true);
+
+//Task 3:
+  function GetInputValue(){
+    obj = {};
+    obj[$("#text-label1").text()] = $("#text-input1").val();
+    obj[$("#text-label2").text()] = $("#text-input2").val();
+    obj[$("#text-label3").text()] = $("#text-input3").val();
+    obj[$("#number-label").text()] = $("#numeric-input").val();
+    obj[$("#checkbox-label1").text()] = $("#cbox-input1")[0].checked;
+    obj[$("#checkbox-label2").text()] = $("#cbox-input2")[0].checked;
+    obj[$("#color-label").text()] = $("#color-input").val();
+    return obj;
+  }
+
+//Task 4:
+  $("#text-input1").prop("disabled", false);
+  $("#text-input2").prop("disabled", false);
+  $("#text-input3").prop("disabled", false);
+  $("#numeric-input").prop("disabled", false);
+  $("#cbox-input1").prop("disabled", false);
+  $("#cbox-input2").prop("disabled", false);
+
+//Task 5:
+
+
+  $("#button" ).click(function() {
+    get = GetInputValue();
+    console.log(get);
+
+//Task 6:
+    lat = get[$("#text-label2").text()];
+    long = get[$("#text-label3").text()];
+    L.circleMarker([lat,long], {color: get[$("#color-label").text()]}).bindPopup(
+      $("#text-input1").val()
+    ).addTo(map)
+  });
+
+
+
+
 });
