@@ -178,7 +178,7 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 
 
 $('part1-jquery').ready(function() {
-
+//task1
   $('#text-label1').text('Marker Title');
   $('#text-label2').text('User Name');
   $('#text-label3').text('Address');
@@ -188,6 +188,7 @@ $('part1-jquery').ready(function() {
   $('#checkbox-label2').text('Is Busy');
   $('#color-label').text('Favorite Color');
   $('#click').text('Print');
+  //task2
   $('#text-input1').val('First one');
   $('#text-input2').val('JY');
   $('#text-input3').val('Chestnut Street');
@@ -196,7 +197,7 @@ $('part1-jquery').ready(function() {
   $('#cbox-input1').prop('checked',true);
   $('#cbox-input2').prop('checked',true);
   $('#color-input').val('#83D3CF');
-
+//task3
 var makeobj = function (title, name, address,number,number2,student, busy,color) {
   var a= {
     "title":title,
@@ -227,7 +228,7 @@ $('#numeric-input').val(),$('#numeric-input2').val(),$('#cbox-input1').val(),$('
   console.log(apple);
 */
 
-
+//task 4
   $('#text-input1').prop('disabled', false);
   $('#text-input2').prop('disabled', false);
   $('#text-input3').prop('disabled', false);
@@ -238,12 +239,12 @@ $('#numeric-input').val(),$('#numeric-input2').val(),$('#cbox-input1').val(),$('
   $('#color-input').prop('disabled', false);
 
 
-
+//task5
   $( "#click" ).click(function(){makeobj($('#text-input1').val(),$('#text-input2').val(),$('#text-input3').val(),
   $('#numeric-input').val(),$('#numeric-input2').val(),$('#cbox-input1').val(),$('#cbox-input2').val(),$('#color-input').val())});
 
 
-
+//task6
 var thecolor = $('#color-input').val()
   var styles = {'radius': 20,
                 'fillColor':thecolor,
