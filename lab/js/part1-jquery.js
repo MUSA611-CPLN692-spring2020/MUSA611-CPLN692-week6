@@ -2,8 +2,8 @@
   Set up our map
 ===================== */
 var map = L.map('map', {
-  center: [39.9522, -75.1639],
-  zoom: 14
+  center: [0, 0],
+  zoom: 2
 });
 var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
   attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -165,6 +165,59 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 
     Use `_.isEqual` to make sure the object you feed in is the same as the one you read back out.
 ===================== */
+
+$('#text-label1').text('label');
+
+$('#text-label2').text('description');
+$('#text-input2').attr('value', 'some description');
+
+$('#text-label3').text('latitude');
+
+$('#text-input3').attr('type', 'number');
+$('#text-input3').attr('placeholder', '');
+
+$('#number-label').text('longitude');
+
+$('#checkbox-label1').text('zoom to it?');
+$('#checkbox-label2').text('plot antipode?');
+
+// For Booleans (checkboxes), we need a different call than .val() or .text(); use .is('checked') instead
+
+$('.input-text').prop('disabled', false);
+
+$('#numeric-input').prop('disabled', false);
+
+$('#text-input3').attr('id', 'numeric-input2');
+$('#numeric-input').attr('id', 'numeric-input1');
+
+$('#cbox-input1').prop('disabled', false);
+$('#cbox-input2').prop('disabled', false);
+
+$('button').click(function() {
+   var responses = {
+    label: $('#text-input1').val(),
+    description: $('#text-input2').val(),
+    latitude: parseFloat($('#numeric-input1').val()),
+    longitude: parseFloat($('#numeric-input2').val()),
+    zoom: $('#checkbox-input1').is(':checked'),
+    plot: $('#checkbox-input2').is(':checked'),
+    pick: $('#color-input').val()
+  };
+
+  var X = responses.longitude;
+  var Y = responses.latitude;
+  text = "<b>" + responses.label + "</b><br>" + responses.description;
+
+  var latlng = L.latLng(Y, X);
+
+  var circle = L.circleMarker(latlng, {
+    color: responses.pick,
+    fillColor: responses.pick,
+    fillOpacity: 0.5,
+    radius: 50
+  }).addTo(map).bindPopup(text);
+
+});
 
 // Take note of our use of jQuery here: $(document).ready(functionToCallWhenReady)
 // This is a popular pattern that you'll run into in programs that run jQuery. It says not to run
