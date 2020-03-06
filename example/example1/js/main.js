@@ -10,7 +10,7 @@ getAndParseData();
 $('button#my-button').click(function(e) {
   appState.numericField1 = $('#num1').val();
   console.log("numericField1", appState.numericField1);
-
+  //debugger;
   appState.numericField2 = $('#num2').val();
   console.log("numericField2", appState.numericField2);
 

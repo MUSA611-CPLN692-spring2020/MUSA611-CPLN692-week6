@@ -52,6 +52,7 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
   In jQuery, we use this syntax as well. It looks like this: $(*selector*); We could, for instance,
   grab all h4 movie-titles with $('h4.movie-title');
 
+
   A NOTE ON jQuery.val vs jQuery.text:
     Some of the exercises in this lab involve reading and writing to HTML inputs with the
     help of jQuery selectors and associated methods for querying the DOM. Two methods you'll use again
@@ -94,7 +95,15 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
     you might want to include a name, an address, an age, a couple of boolean characteristics, and a
     favorite color. Don't spend too much time on thinking about the perfect object to represent with
     this form, just about anything will do.
-
+*/
+    $('#text-label1').text('Title');
+    $('#text-label2').text('Name');
+    $('#text-label3').text('Address');
+    $('#number-label').text('Age');
+    $('#checkbox-label1').text('isStudent');
+    $('#checkbox-label2').text('wearGlass');
+    $('#color-label').text('FavoriteColor');
+/*
   Task 2: Setting (writing) input values
     *NOTE*: An input's value is not the same as an HTML element's text. We use $(selector).val() as
             opposed to $(selector).text() in this case.
@@ -103,11 +112,36 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
     properties of people, the name might be 'bob' and the favorite color could be green (hint: you'll
     want to get formatting exactly right to set a color field; experiment in the console to see what
     the color you'll specify should look like).
-
+*/
+    $('#text-input1').val('Welcome');
+    $('#text-input2').val('Yuyang');
+    $('#text-input3').val('Philadelphia');
+    $('#numeric-input').val(22);
+    $('#cbox-input1').prop('checked',true);
+    $('#cbox-input2').prop('checked',true);
+    $('#color-input').val('#ffff99');
+/*
   Task 3: Getting (reading) input values
     Write the code necessary to read from your input form and return a javascript object (with keys
     to clarify the meaning of each value) that has all the data that's stored in your form.
+*/
+    var input_form = function(input1,input2,input3,numeric_input,cbox_input1,cbox_input2,color_input){
+      return {
+        'Title':input1,
+        'Name':input2,
+        'Address':input3,
+        'Age':numeric_input,
+        'isStudent': cbox_input1,
+        'wearGlass': cbox_input2,
+        'FavoriteColor':color_input
+      };
+    };
 
+    console.log(input_form($('#text-input1').val(),$('#text-input2').val(),
+    $('#text-input3').val(),$('#numeric-input').val(),
+    $('#cbox-input1').prop('checked'),$('#cbox-input2').prop('checked'),$('#color-input').val()));
+
+/*
   Task 4: Enable user interaction with the form
     At this point, we're really only using HTML input fields as a kind of storage. We create some data,
     put that data on the DOM, and read it back out. What we really want to do is interact with the
@@ -126,7 +160,16 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
     $('#someInput').prop('disabled', true);  -> <input id="someInput" type="number" disabled>
 
     Enable *all* fields on this form.
+  */
+    $('#text-input1').prop('disabled', false);
+    $('#text-input2').prop('disabled', false);
+    $('#text-input3').prop('disabled', false);
+    $('#numeric-input').prop('disabled', false);
+    $('#cbox-input1').prop('disabled', false);
+    $('#cbox-input2').prop('disabled', false);
+    $('#color-input').prop('disabled', false);
 
+/*
   Task 5: Add a button trigger to log this form's object to console
     We now can enter data through the HTML and create an object to represent that data. Add a button
     click event to the button at the bottom of your form. This means that we want to use jQuery to
@@ -137,12 +180,36 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
     until the event on which it is bound is triggered.
 
     P.S. Checkboxes might confuse you. Try to use google to figure out what's going wrong.
+*/
+
+    $("#User_Button").click(function() {
+        console.log(input_form($('#text-input1').val(),$('#text-input2').val(),
+        $('#text-input3').val(),$('#numeric-input').val(),
+        $('#cbox-input1').prop('checked'),$('#cbox-input2').prop('checked'),$('#color-input').val()));
+        });
+/*
 
   Task 6: Plot input data to the map on button click
     Modify this form to include at least a lat (number), long (number), description (text), and
     color (color) inputs. With these inputs you should be able to plot a circle marker
     (http://leafletjs.com/reference.html#circlemarker) to the lat/long on the form, with the color
     provided, and a bound popup which gives you the description.
+*/
+    var input_form2 = function(lat,long,description,color_input){
+      return {
+        'LAT':lat,
+        'LNG':long,
+        'DES':description,
+        'Color':color_input
+      };
+    };
+
+    $("#User_Button").click(function() {
+        var circleMarker = L.circleMarker([input_form2(39.954774,-75.194364,'Van Pelt','#006600')['LAT'], input_form2(39.954774,-75.194364,'Van Pelt','#006600')['LNG']],{color:input_form2(39.954774,-75.194364,'Van Pelt','#006600')['Color']}).addTo(map);
+        circleMarker.bindPopup(input_form2(39.954774,-75.194364,'Van Pelt','#006600')['DES']);
+    })
+
+/*
 
   // STRETCH GOALS
   Task 7: Use default values - OPTIONAL
