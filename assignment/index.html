@@ -9,9 +9,29 @@
   <body>
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- =====================
-      Add elements in this space
-      ====================== -->
+      <h3 id="main-heading">websites to choose from:</h3>
+      <a href="https://raw.githubusercontent.com/MUSA611-CPLN692-spring2020/datasets/master/json/philadelphia-crime-snippet.json" target="_blank">Philadelphia Crime</a>
+      <br>
+      <a href="https://raw.githubusercontent.com/MUSA611-CPLN692-spring2020/datasets/master/json/philadelphia-solar-installations.json" target="_blank">Philadelphia Solar Installations</a>
+      <br>
+      <a href="https://raw.githubusercontent.com/MUSA611-CPLN692-spring2020/datasets/master/json/world-country-capitals.json" target="_blank">World Country Capitals</a>
+      <br>
+      <a href="https://raw.githubusercontent.com/CPLN690-MUSA610/datasets/master/json/philadelphia-bike-crashes-snippet.json" target="_blank">Philadelphia Bike Crashes</a>
+      <br>
+      <br>
+      <label id="text-label1" for="text-input1">URL of the dataset</label>
+      <input id="text-input1" class="input-text" type="text" placeholder="text here" value="https://raw.githubusercontent.com/MUSA611-CPLN692-spring2020/datasets/master/json/world-country-capitals.json">
+      <br>
+      <br>
+      <label id="text-label2" for="text-input2">Latitude key in the data</label>
+      <input id="text-input2" class="input-text" type="text" placeholder="text here" value="CapitalLatitude">
+      <br>
+      <br>
+      <label id="text-label3" for="text-input3">Longitude key in the data</label>
+      <input id="text-input3" class="input-text" type="text" placeholder="text here" value="CapitalLongitude">
+      <br>
+      <br>
+      <button>Run</button>
     </div>
     <!-- Map -->
     <div id="map" class="map"></div>
