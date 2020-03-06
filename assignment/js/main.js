@@ -92,6 +92,25 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 /* =====================
  CODE EXECUTED HERE!
 ===================== */
+$('button#button').click(function(e) {
+  appState.URL = $('#URL-input').val();
+  appState.latitude = $('#lat-input').val();
+  appState.longitude = $('#long-input')[0].checked;
+  plotMarkers(appState.latitude, appstate.longitude);
+};
+
+  $('button').click(function() {
+    var URL = $('#URL-input').val();
+    var latitude = $('#lat-input').val();
+    var longitude = $('#long-input').val();
+
+    var formFields = makeForm(URL, latitude, longitude)
+
+    $('#URL-input').val(formFields.URL);
+    $('#lat-input').val(formFields.latitude);
+    $('#long-input').val(formFields.longitude);
+
+    _.each(formFields.markers, function(marker) { marker.addTo(map); });
 
 downloadData.done(function(data) {
   var parsed = parseData(data);
