@@ -170,6 +170,99 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // This is a popular pattern that you'll run into in programs that run jQuery. It says not to run
 // the function passed to `ready` until the HTML document is fully loaded and all scripts have
 // been interpreted. It is, therefore, an example of asynchronous behavior.
+
+// Global Variables
+// define global variables , store using a dictionary 
+var appState = {
+  "Name": undefined,
+  "Country": undefined,
+  "Address": undefined,
+  "Age": undefined,
+  "IsStudent": undefined,
+  "IsDesign": undefined, 
+  "FavColor" : undefined
+};
+
+// Task 1 
+var updateLabels = function(){
+  $('#main-heading').text('Plot a point!');
+  $('#text-label1').text('Name');
+  $('#number-label').text('Lat');
+  $('#number-label2').text('Lng');
+  $('#text-label2').text('description');
+  $('#checkbox-label1').text('Student?');
+  $('#checkbox-label2').text('Design Student?');
+  $('#color-label').text('Favourite Color');
+  $('button').text('Search')
+}
+
+// Task 2 
+var setValues = function(){
+  $('#text-input1').val('Leanne');
+  $('#numeric-input').val(39.956024);
+  $('#numeric-input2').val(-75.195462);
+  $('#text-input2').val('Description of Point');
+  $("#cbox-input1").prop("checked", true);
+  $("#cbox-input2").prop("checked", true);
+  $('#color-input').val('#00FFFF');  //note have to use rrggbb
+}
+
+// Task 3
+var readInput = function(){
+  appState.Name = $('#text-input1').val();
+  console.log("Name", appState.Name);
+  appState.Lat = $('#numeric-input').val();
+  console.log("Lat", appState.Lat);
+  appState.Lng = $('#numeric-input2').val();
+  console.log("Lng", appState.Lng);
+  appState.description = $('#text-input2').val();
+  console.log("description", appState.description);
+
+  appState.IsStudent = $('#cbox-input1')[0].checked;
+  console.log("Is student", appState.IsStudent);
+  appState.IsDesign = $('#cbox-input2')[0].checked;
+  console.log("Is design", appState.IsDesign);
+
+  appState.FavColor = $('#color-input').val();
+  console.log("Fav Color", appState.FavColor);
+}
+
+// Task 4
+var enableInteraction = function(){
+  $('#text-input1').prop('disabled', false);
+  $('#numeric-input').prop('disabled', false);
+  $('#numeric-input2').prop('disabled', false);
+  $('#text-input2').prop('disabled', false);
+
+  $('#cbox-input1').prop('disabled', false);
+  $('#cbox-input2').prop('disabled', false);
+
+  $('#color-input').prop('disabled', false);
+}
+
+
+// Task 6 plot on map
+var plotMarker = function(){
+  var pathOpts = {'radius': 10,
+                  'fillColor': appState.FavColor};
+  L.circleMarker([appState.Lat, appState.Lng], pathOpts)
+      .bindPopup(appState.description)
+      .addTo(map);
+}
+
+// Task 5
+var buttonClick = function(){
+  $('button').click(function(e) {
+  readInput();
+  plotMarker();});
+  
+}
+
 $(document).ready(function() {
-  // Do your stuff here
+  updateLabels();
+  setValues();
+  readInput();
+  enableInteraction();
+  buttonClick();  
+
 });

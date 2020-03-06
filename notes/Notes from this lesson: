@@ -1,0 +1,23 @@
+Notes from this lesson: 
+- pound sign in javascript give it an Id. jQuery. eg. #string1 
+- elem/e commonly used to call a html element 
+- elem = $('#num'), elem.val() // will return the value assigned to the thing called #num 
+
+- when ordering js files in the index.html, make sure you are not referring to a function that is only defined in a later script because it runs the .js scripts in order. 
+
+- events!!
+	- elem.click(function(e){# do something})
+	- the convention is to use e, e for event. 
+	- elem.click(function(e){alert})
+	- mouse events are possible using jQuery
+
+- debugger
+	- go to source in inspect page 
+	- type in debugger; 
+	- enter 
+
+- watch
+	- linked to the debugger? 
+	- when you run the debugger, will check 
+
+- whats the difference between debugger and breakpoint? 
