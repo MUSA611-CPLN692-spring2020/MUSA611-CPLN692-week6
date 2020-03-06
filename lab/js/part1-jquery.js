@@ -173,3 +173,87 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 $(document).ready(function() {
   // Do your stuff here
 });
+
+// TASK 1
+$("#text-label1").text("Title:");
+$("#text-label2").text("Name:");
+$("#text-label3").text("Address:");
+$("#number-label").text("Age:");
+$("#checkbox-label1").text("Are You Married?:");
+$("#checkbox-label2").text("Are You A Student?:");
+$("#color-label").text("Hair Color?:");
+
+// TASK 2 and 6
+$("#text-input1").val("Ms");
+$("#text-input2").val("Yap");
+$("#text-input3").val("3600 Chestnut Street");
+$("#numeric-input").val(22);
+$("#cbox-input1").prop("checked",false);
+$("#cbox-input2").prop("checked",true);
+$("#color-input").val("#000000");
+$("#text-label4").text("Description:");
+$("#number-label2").text("Latitude:");
+$("#number-label3").text("Longitude:");
+$("#color-label2").text("Color:");
+
+// TASKS 3, 5, and 6
+var appState = {
+  "Title": undefined,
+  "Name": undefined,
+  "Address": undefined,
+  "Age": undefined,
+  "Are You Married?": undefined,
+  "Are You A Student?": undefined,
+  "Hair Color?": undefined,
+  "Description:": undefined,
+  "Latitude:": undefined,
+  "Longitude:": undefined,
+  "Color:": undefined,
+};
+
+$('button').click(function(e) {
+  appState.Title = $('#text-input1').val();
+  console.log("Title:", appState.Title);
+
+  appState.Name = $('#text-input2').val();
+  console.log("Name:", appState.Name);
+
+  appState.Address = $('#text-input3').val();
+  console.log("Address:", appState.Address);
+
+  appState.Age = $('#numeric-input').val();
+  console.log("Age:", appState.Age);
+
+  appState.Married = $('#cbox-input1')[0].checked;
+  console.log("Are You Married?:", appState.Married);
+
+  appState.Student = $('#cbox-input2')[0].checked;
+  console.log("Are You A Student?:", appState.Student);
+
+  appState.Color = $('#color-input').val();
+  console.log("Color:", appState.Color);
+
+  appState.Description = $('#text-input4').val();
+  console.log("Description:", appState.Description);
+
+  appState.Latitude = $('#numeric-input2').val();
+  console.log("Latitude:", appState.Latitude);
+
+  appState.Longitude = $('#numeric-input3').val();
+  console.log("Longitude:", appState.Longitude);
+
+  appState.markerColor = $('#color-label2').val();
+  console.log("markerColor:", appState.markerColor);
+
+  var pathOpts = {'fillColor': appState.markerColor};
+  L.circleMarker([appState.Latitude,appState.Longitude], pathOpts).bindPopup(appState.Description).addTo(map);
+});
+
+// TASK 4
+$("#text-input1").prop("disabled", false);
+$("#text-input2").prop("disabled", false);
+$("#text-input3").prop("disabled", false);
+$("#numeric-input").prop("disabled", false);
+$("#cbox-input1").prop("disabled", false);
+$("#cbox-input2").prop("disabled", false);
+$("#color-input").prop("disabled", false);
