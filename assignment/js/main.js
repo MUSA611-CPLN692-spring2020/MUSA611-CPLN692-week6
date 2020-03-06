@@ -79,7 +79,7 @@ var removeMarkers = function(markers) {
  Button events
 ===================== */
 var buttonClick = function(){
-  $('Button').click(function(e) {
+  $('button#1').click(function(e) {
   readInput();
   var downloadData = $.ajax(appState.Data);
   downloadData.done(function(data) {
@@ -89,30 +89,16 @@ var buttonClick = function(){
 	  plotMarkers(appState.markers);
 	});
 });
-  
 }
-
-// var buttonClick = function(){
-//   $('Button 1').click(function(e) {
-//   readInput();
-//   var downloadData = $.ajax(appState.Data);
-//   downloadData.done(function(data) {
-// 	  var parsed = parseData(data);
-// 	  console.log(parsed);
-// 	  appState.markers = makeMarkers(parsed);
-// 	  plotMarkers(appState.markers);
-// 	});
-// });
   
-// }
 
-// /*CLICK EVENt TO REMOVE MARKERS*/
-// var buttonRemove = function(){
-// 	$('Button 2').click(function(e){
-// 		console.log('remove')
-// 		removeMarkers(appState.markers)
-// 	});
-// }
+/*CLICK EVENt TO REMOVE MARKERS*/
+var buttonRemove = function(){
+	$('button#2').click(function(e){
+		console.log('remove')
+		removeMarkers(appState.markers)
+	});
+}
 
 
 /* =====================
@@ -123,5 +109,6 @@ $(document).ready(function() {
   readInput();
   enableInteraction();
   buttonClick();  
+  buttonRemove();
 
 });
