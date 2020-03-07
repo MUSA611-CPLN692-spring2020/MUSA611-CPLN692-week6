@@ -172,4 +172,55 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // been interpreted. It is, therefore, an example of asynchronous behavior.
 $(document).ready(function() {
   // Do your stuff here
+  //Task 1
+  $('#text-label1').text('Name');
+  $('#text-label2').text('School');
+  $('#text-label3').text('Favorite Movie');
+  $('#number-label').text('Height');
+  $('#checkbox-label1').text('Hmong?');
+  $('#checkbox-label2').text('Have been to Wuhan recently?');
+  $('#color-label').text('Represent Color');
+  $('button').text('Show');
+
+  //Task 2
+$('#text-input1').val('Hsinghsing');
+$('#text-input2').val('UPenn');
+$('#text-input3').val('Inception');
+$('#numeric-input').val(180);
+$('#cbox-input1').prop('checked', true);
+$('#cbox-input2').prop('checked', false);
+$('#color-input').val('#3c8db5');
+
+//Task 3
+var Obj = new Object();
+Obj[$("#text-label1").text()] = $("#text-input1").val();
+Obj[$("#text-label2").text()] = $("#text-input2").val();
+Obj[$("#text-label3").text()] = $("#text-input3").val();
+Obj[$("#number-label").text()] = $("#numeric-input").val();
+Obj[$("#checkbox-label1").text()] = $("#cbox-input1").prop('checked');
+Obj[$("#checkbox-label2").text()] = $("#cbox-input2").prop('checked');
+Obj[$("#color-label").text()] = $("#color-input").val();
+
+//Task 4
+$('#text-input1').prop('disabled', false);
+$('#text-input2').prop('disabled', false);
+$('#text-input3').prop('disabled', false);
+$('#numeric-input').prop('disabled', false);
+$('#cbox-input1').prop('disabled', false);
+$('#cbox-input2').prop('disabled', false);
+$('#color-input').prop('disabled', false);
+
+//Task 6
+$("#color-input").after("<br>","<br>","<label id='number-label2' for='numeric-input2'>lat</label>",'<input type="number" id="numeric-input2">',
+"<br>","<br>","<label id='number-label3' for='numeric-input3'>lon</label>", '<input type="number" id="numeric-input3">',"<br>","<br>");
+$("#numeric-input2").val(40);
+$("#numeric-input3").val(-75);
+$("#text-label1").val("Yichen");
+$("button" ).click(function() {
+  var marker = L.circleMarker([$("#numeric-input2").val(), $("#numeric-input3").val()], {
+    color: $("#color-input").val()});
+  marker.addTo(map);
+  marker.bindPopup($("#text-label1").val()).openPopup();
+});
+
 });
