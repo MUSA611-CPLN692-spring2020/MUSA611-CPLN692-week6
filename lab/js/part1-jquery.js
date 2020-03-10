@@ -171,5 +171,66 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // the function passed to `ready` until the HTML document is fully loaded and all scripts have
 // been interpreted. It is, therefore, an example of asynchronous behavior.
 $(document).ready(function() {
-  // Do your stuff here
-});
+
+  // task 1
+  $('#text-label1').text('Enter your name');
+  $('#text-label2').text('Enter your user ID');
+  $('#text-label3').text('Your cup preference');
+  $('#number-label1').text('Your latitude');
+  $('#number-label2').text('Your longtitude');
+  $('#checkbox-label1').text('Decaf');
+  $('#checkbox-label2').text('Pick-up');
+  $('#color-label').text('Select your color');
+  $('button').text('Find');
+
+
+  // task 2
+  $('#text-input1').val('The name');
+  $('#text-input2').val('The ID');
+  $('#text-input3').val('regular');
+  $('#numeric-input1').val(39.952998);
+  $('#numeric-input2').val(-75.192254);
+  $('#cbox-input1').prop('checked',false);
+  $('#cbox-input2').prop('checked',true);
+  $('#color-input').val('#55F19F');
+
+  $("#description").val('The location');
+
+
+  // task 4
+  $('#text-input1').prop('disabled', false);
+  $('#text-input2').prop('disabled', false);
+  $('#text-input3').prop('disabled', false);
+  $('#numeric-input1').prop('disabled', false);
+  $('#numeric-input2').prop('disabled', false);
+  $('#cbox-input1').prop('disabled', false);
+  $('#cbox-input2').prop('disabled', false);
+  $('#color-input').prop('disabled', false);
+  $('#description').prop('disabled', false);
+
+  // task 5
+  $( "Button" ).click(function() {
+    // task 3
+    var readInputVals = {
+      'name': $('#text-input1').val(),
+      'ID': $('#text-input2').val(),
+      'cup': $('#text-input3').val(),
+      'LAT': $('#numeric-input1').val(),
+      'LNG': $('#numeric-input2').val(),
+      'dcaf': $('#cbox-input1').prop('checked'),
+      'pickup': $('#cbox-input2').prop('checked'),
+      'color': $('#color-input').val(),
+      'description': $("#description").val()
+    };
+    
+    console.log(readInputVals);
+
+    // task 6
+    L.circleMarker([readInputVals.LAT, readInputVals.LNG], {
+      color: readInputVals[$('#color-input').val()],
+      fillColor: readInputVals[ $('#color-input').val()],
+      radius: 20
+    }).addTo(map).circle.bindPopup(responses.description);
+  });
+
+ });
