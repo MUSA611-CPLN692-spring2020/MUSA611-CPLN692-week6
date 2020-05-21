@@ -172,4 +172,45 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 // been interpreted. It is, therefore, an example of asynchronous behavior.
 $(document).ready(function() {
   // Do your stuff here
+  $('#main-heading').text('Restaurant Tracker');
+  $('#text-label1').text('Restaurant Name');
+  $('#text-input1').prop("disabled", false);
+  $('#text-label2').text('Speciality');
+  $('#text-input2').prop("disabled", false);
+  $('#text-label3').text('Best drink');
+  $('#text-input3').prop("disabled", false);
+  $('#number-label').text('Rating 1-5');
+  $('#numeric-input').prop("disabled", false);
+  $('#checkbox-label1').text('Sells beer?');
+  $('#cbox-input1').prop("disabled", false);
+  $('#checkbox-label2').text('Has good deserts?');
+  $('#cbox-input2').prop("disabled", false);
+  $('#color-label').text('Visit priority');
+  $(":button").text('Create Entry');
+
+});
+
+var createEntry = function () {
+  var myRestaurant = {
+    Name: $('#text-input1').val(),
+    Speciality: $('#text-input2').val(),
+    BestDrink: $('#text-input3').val(),
+    Rating: $('#numeric-input').val(),
+    SellsBeer: $('#cbox-input1').is(':checked'),
+    HasGoodDeserts: $('#cbox-input2').is(':checked'),
+    lat: $('#lat-input').val(),
+    lng: $('#lng-input').val(),
+    Priority: $('#color-input').val(),
+    Description: $('#desc-input').val()
+  };
+  return myRestaurant;
+};
+
+$(":button").click(function() {
+  console.log(createEntry());
+  var latlng = L.latLng($('#lat-input').val(), $('#lng-input').val());
+  var colorpriority = $('#color-input').val();
+  var description_rest = $('#desc-input').val();
+  var marker = L.circleMarker(latlng, {color: colorpriority, weight: 15}).addTo(map);
+  return marker.bindPopup(description_rest).openPopup();;
 });
